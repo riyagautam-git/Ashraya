@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashraya | Help &amp; Emergency</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .helpline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 3rem;
+        }
+        .helpline-card {
+            background: var(--white);
+            padding: 1.6rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 6px solid #dc2626;
+        }
+        .helpline-card h3 {
+            color: var(--navy);
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+        .helpline-number {
+            display: inline-block;
+            margin-top: 0.6rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #dc2626;
+            text-decoration: none;
+        }
+        .raya-box {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border-top: 6px solid var(--navy);
+        }
+        .chat-window {
+            background: #f8fafc;
+            border: 1px solid var(--light-blue);
+            border-radius: 12px;
+            height: 240px;
+            overflow-y: auto;
+            padding: 1rem;
+            margin: 1rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .msg-raya {
+            background: var(--light-blue);
+            color: var(--navy);
+            padding: 0.75rem 1rem;
+            border-radius: 12px 12px 12px 2px;
+            max-width: 80%;
+            align-self: flex-start;
+        }
+        .msg-user {
+            background: var(--navy);
+            color: var(--white);
+            padding: 0.75rem 1rem;
+            border-radius: 12px 12px 2px 12px;
+            max-width: 80%;
+            align-self: flex-end;
+        }
+        .chat-input-row {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .chat-input-row input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--light-blue);
+            border-radius: 50px;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="dashboard.html" class="logo">Ashraya</a>
+        <ul class="nav-links">
+            <li><a href="awareness.html">Mental Health Awareness</a></li>
+            <li><a href="wellness.html">Emotional Wellness</a></li>
+            <li><a href="journal.html">Wellbeing Journal</a></li>
+            <li><a href="recovery.html">Addiction Recovery</a></li>
+            <li><a href="emergency.html" class="nav-emergency">Help &amp; Emergency</a></li>
+            <li><a href="#raya" class="nav-raya">Raya.AI</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="hero-card" style="border-left-color: #dc2626;">
+            <span class="hero-badge" style="background: #fee2e2; color: #b91c1c;">24/7 Support</span>
+            <h1>Help &amp; Emergency</h1>
+            <p class="hero-subtitle">Healing takes time, and asking for help is a courageous step.</p>
+            <p class="hero-description">You never have to carry heavy moments alone. Reach out to verified national helplines below or talk with Raya, your virtual companion.</p>
+        </section>
+
+        <section>
+            <h2 class="section-heading">Contacts You May Need</h2>
+            <div class="helpline-grid">
+                <div class="helpline-card">
+                    <h3>Need Immediate Mental Support?</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Tele-MANAS (24/7 Mental Health Support)</p>
+                    <a href="tel:14416" class="helpline-number">14416</a>
+                </div>
+                <div class="helpline-card">
+                    <h3>National Emergency</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Immediate Police, Ambulance &amp; Crisis Response</p>
+                    <a href="tel:112" class="helpline-number">112</a>
+                </div>
+                <div class="helpline-card">
+                    <h3>National De-addiction Helpline</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Confidential Addiction &amp; Recovery Support</p>
+                    <a href="tel:1800110031" class="helpline-number">1800-11-0031</a>
+                </div>
+                <div class="helpline-card">
+                    <h3>Child Helpline</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">24/7 Care &amp; Protection for Children</p>
+                    <a href="tel:1098" class="helpline-number">1098</a>
+                </div>
+                <div class="helpline-card">
+                    <h3>Women Helpline</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">24/7 Support &amp; Safety Assistance</p>
+                    <a href="tel:181" class="helpline-number">181</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Talk to Raya -->
+        <section id="raya" class="raya-box">
+            <h2 style="color: var(--navy);">Talk to Raya (Your Virtual Counsellor)</h2>
+            <p style="color: var(--text-muted); font-size: 0.92rem;">Share what's on your mind in a calm, judgment-free space.</p>
+            
+            <div id="chatWindow" class="chat-window">
+                <div class="msg-raya">Hi, I'm Raya. I'm here to listen. How are you feeling right now?</div>
+            </div>
+
+            <div class="chat-input-row">
+                <input type="text" id="chatInput" placeholder="Type a message to Raya..." onkeypress="if(event.key==='Enter') sendMessage()">
+                <button class="btn-primary" onclick="sendMessage()">Send</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Ashraya &mdash; If you are in immediate danger, please call <strong>112</strong> or Tele-MANAS at <strong>14416</strong> right away.</p>
+    </footer>
+
+    <script>
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            const win = document.getElementById('chatWindow');
+            win.innerHTML += `<div class="msg-user">${text}</div>`;
+            input.value = '';
+
+            setTimeout(() => {
+                let reply = "Thank you for sharing that with me. Take a slow, deep breath—you're doing the best you can right now. Would you like to try a grounding exercise or write this down in your journal?";
+                const lower = text.toLowerCase();
+                if (lower.includes('anxious') || lower.includes('stress') || lower.includes('panic')) {
+                    reply = "It sounds like things feel really heavy right now. Let's pause together—try inhaling for 4 seconds, holding for 4, and exhaling for 4. You can also visit the Emotional Wellness tab for a guided breathing timer.";
+                } else if (lower.includes('help') || lower.includes('hurt') || lower.includes('suicide')) {
+                    reply = "Please know you don't have to go through this alone. Reach out right now to Tele-MANAS at 14416 or Emergency services at 112—someone is ready to support you 24/7.";
+                }
+                win.innerHTML += `<div class="msg-raya">${reply}</div>`;
+                win.scrollTop = win.scrollHeight;
+            }, 500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashraya | Addiction Recovery</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .streak-banner {
+            background: var(--navy);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+        .streak-count {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: var(--mint-green);
+        }
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--light-blue);
+        }
+        .task-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--mint-accent);
+        }
+        .badge-pill {
+            display: inline-block;
+            background: var(--mint-green);
+            color: var(--navy);
+            padding: 0.4rem 0.9rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin: 0.3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="dashboard.html" class="logo">Ashraya</a>
+        <ul class="nav-links">
+            <li><a href="awareness.html">Mental Health Awareness</a></li>
+            <li><a href="wellness.html">Emotional Wellness</a></li>
+            <li><a href="journal.html">Wellbeing Journal</a></li>
+            <li><a href="recovery.html" class="active">Addiction Recovery</a></li>
+            <li><a href="emergency.html" class="nav-emergency">Help &amp; Emergency</a></li>
+            <li><a href="emergency.html#raya" class="nav-raya">Raya.AI</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="hero-card">
+            <span class="hero-badge">Addiction Recovery</span>
+            <h1>You can take your time becoming okay.</h1>
+            <p class="hero-subtitle">Progress isn't linear—every clean hour and honest step counts.</p>
+        </section>
+
+        <!-- Streak Banner -->
+        <section class="streak-banner">
+            <div>
+                <p style="opacity: 0.85; font-size: 0.95rem;">Current Recovery Streak</p>
+                <div class="streak-count"><span id="streakNum">1</span> Day(s) Strong</div>
+            </div>
+            <button class="btn-primary" style="background: var(--mint-accent);" onclick="incrementStreak()">+ Check In Today</button>
+        </section>
+
+        <section class="cards-grid">
+            <!-- Get to know your Addiction -->
+            <div class="feature-card">
+                <div>
+                    <h3>Get to Know Your Addiction</h3>
+                    <p>Identify triggers, stress cues, and habits behind cravings so you can replace them with healthier routines.</p>
+                </div>
+            </div>
+
+            <!-- Tasks to initiate Recovery -->
+            <div class="feature-card">
+                <div>
+                    <h3>Tasks to Initiate Recovery</h3>
+                    <div class="task-item"><input type="checkbox"> <span>Drink 2 glasses of water when a craving hits</span></div>
+                    <div class="task-item"><input type="checkbox"> <span>Take a 10-minute walk outdoors</span></div>
+                    <div class="task-item"><input type="checkbox"> <span>Write 3 lines in your Wellbeing Journal</span></div>
+                    <div class="task-item"><input type="checkbox"> <span>Reach out to a trusted friend or helpline</span></div>
+                </div>
+            </div>
+
+            <!-- Earned Rewards -->
+            <div class="feature-card">
+                <div>
+                    <h3>Your Earned Rewards</h3>
+                    <p>Milestones unlocked on your healing journey:</p>
+                    <div style="margin-top: 0.75rem;">
+                        <span class="badge-pill">First Step Taken</span>
+                        <span class="badge-pill">24 Hours Clear</span>
+                        <span class="badge-pill">Mindful Starter</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Ashraya &mdash; National De-addiction Helpline: <strong>1800-11-0031</strong></p>
+    </footer>
+
+    <script>
+        let streak = parseInt(localStorage.getItem('ashraya_streak') || '1', 10);
+        document.getElementById('streakNum').textContent = streak;
+
+        function incrementStreak() {
+            streak += 1;
+            localStorage.setItem('ashraya_streak', streak);
+            document.getElementById('streakNum').textContent = streak;
+        }
+    </script>
+</body>
+</html>

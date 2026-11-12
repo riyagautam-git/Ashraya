@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashraya | Emotional Wellness</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .wellness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+        .tool-box {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+        .tool-box h3 {
+            color: var(--navy);
+            margin-bottom: 0.75rem;
+        }
+        .breathe-circle {
+            width: 140px;
+            height: 140px;
+            margin: 1.5rem auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--light-blue), var(--mint-green));
+            border: 4px solid var(--mint-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--navy);
+            transition: transform 4s ease-in-out;
+        }
+        .breathe-circle.expand {
+            transform: scale(1.25);
+        }
+        .mood-buttons {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .mood-btn {
+            border: 2px solid var(--light-blue);
+            background: var(--white);
+            padding: 0.6rem 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--navy);
+            transition: all 0.2s;
+        }
+        .mood-btn:hover, .mood-btn.selected {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+        .status-msg {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--mint-accent);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="dashboard.html" class="logo">Ashraya</a>
+        <ul class="nav-links">
+            <li><a href="awareness.html">Mental Health Awareness</a></li>
+            <li><a href="wellness.html" class="active">Emotional Wellness</a></li>
+            <li><a href="journal.html">Wellbeing Journal</a></li>
+            <li><a href="recovery.html">Addiction Recovery</a></li>
+            <li><a href="emergency.html" class="nav-emergency">Help &amp; Emergency</a></li>
+            <li><a href="emergency.html#raya" class="nav-raya">Raya.AI</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="hero-card">
+            <span class="hero-badge">Emotional Wellness</span>
+            <h1>You are more than the hardest chapter of your life.</h1>
+            <p class="hero-subtitle">Pause, check in with yourself, and find steady ground.</p>
+            <p class="hero-description">
+                Understanding your emotions helps you respond rather than react. Use the guided breathing circle below or log how you are feeling right now.
+            </p>
+        </section>
+
+        <section class="wellness-grid">
+            <!-- Breathing Exercise -->
+            <div class="tool-box" style="text-align: center;">
+                <h3>Take a Moment to Breathe</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem;">Follow the circle: 4s Inhale &bull; 4s Hold &bull; 4s Exhale</p>
+                <div id="breatheCircle" class="breathe-circle">Ready</div>
+                <button class="btn-primary" onclick="startBreathing()">Start 1-Minute Calm</button>
+            </div>
+
+            <!-- Emotion Tracker -->
+            <div class="tool-box">
+                <h3>Emotion Tracker</h3>
+                <p style="color: var(--text-muted); font-size: 0.92rem;">How are you feeling right now?</p>
+                <div class="mood-buttons">
+                    <button class="mood-btn" onclick="logMood(this, 'Calm &amp; Balanced')">Calm</button>
+                    <button class="mood-btn" onclick="logMood(this, 'Hopeful')">Hopeful</button>
+                    <button class="mood-btn" onclick="logMood(this, 'Anxious')">Anxious</button>
+                    <button class="mood-btn" onclick="logMood(this, 'Overwhelmed')">Overwhelmed</button>
+                    <button class="mood-btn" onclick="logMood(this, 'Low / Tired')">Low</button>
+                </div>
+                <p id="moodStatus" class="status-msg"></p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-heading">Coping Strategies &amp; Stress Management</h2>
+            <div class="cards-grid">
+                <div class="feature-card">
+                    <div>
+                        <h3>Understanding Emotions</h3>
+                        <p>Name the emotion to tame it. Separating feelings from facts reduces emotional overwhelm.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div>
+                        <h3>5-4-3-2-1 Grounding</h3>
+                        <p>Identify 5 things you see, 4 you feel, 3 you hear, 2 you smell, and 1 you taste to anchor yourself in the present.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div>
+                        <h3>Stress Management</h3>
+                        <p>Break big tasks into 15-minute blocks, step away from screens, and hydrate regularly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Ashraya &mdash; Mindfulness and Mental Wellbeing | Need immediate support? Call Tele-MANAS at <strong>14416</strong></p>
+    </footer>
+
+    <script>
+        let breatheInterval;
+        function startBreathing() {
+            const circle = document.getElementById('breatheCircle');
+            clearInterval(breatheInterval);
+            let step = 0;
+            const cycle = () => {
+                if (step === 0) {
+                    circle.textContent = 'Inhale...';
+                    circle.classList.add('expand');
+                } else if (step === 1) {
+                    circle.textContent = 'Hold...';
+                } else {
+                    circle.textContent = 'Exhale...';
+                    circle.classList.remove('expand');
+                }
+                step = (step + 1) % 3;
+            };
+            cycle();
+            breatheInterval = setInterval(cycle, 4000);
+        }
+
+        function logMood(btn, mood) {
+            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            localStorage.setItem('ashraya_last_mood', `${mood} (logged at ${time})`);
+            document.getElementById('moodStatus').textContent = `Saved: Feeling ${mood} at ${time}.`;
+        }
+
+        window.onload = () => {
+            const saved = localStorage.getItem('ashraya_last_mood');
+            if (saved) document.getElementById('moodStatus').textContent = `Last check-in: ${saved}`;
+        };
+    </script>
+</body>
+</html>
