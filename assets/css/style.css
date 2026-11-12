@@ -1,0 +1,245 @@
+/* Google Fonts for clean typography + handwritten script for Ashraya logo */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --navy: #0f2942;
+    --primary-blue: #1d6fa5;
+    --light-blue: #e6f4fa;
+    --mint-green: #d8f3dc;
+    --mint-accent: #2d8a68;
+    --white: #ffffff;
+    --text-dark: #1e293b;
+    --text-muted: #475569;
+    --shadow: 0 10px 25px rgba(15, 41, 66, 0.08);
+    --radius: 16px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--light-blue) 0%, #f4fbf8 50%, var(--mint-green) 100%);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 15px rgba(15, 41, 66, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-family: 'Caveat', cursive;
+    font-size: 2.3rem;
+    color: var(--primary-blue);
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--navy);
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-blue);
+    font-weight: 600;
+}
+
+.nav-emergency {
+    color: #b91c1c !important;
+    background: #fee2e2;
+    padding: 0.45rem 0.9rem;
+    border-radius: 50px;
+    font-weight: 600 !important;
+}
+
+.nav-raya {
+    background: var(--navy);
+    color: var(--white) !important;
+    padding: 0.5rem 1.1rem;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    transition: background 0.2s ease;
+}
+
+.nav-raya:hover {
+    background: var(--primary-blue);
+}
+
+/* Main Container */
+.container {
+    width: 90%;
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 3rem 0;
+    flex: 1;
+}
+
+/* Hero Section */
+.hero-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 3.5rem 3rem;
+    box-shadow: var(--shadow);
+    border-left: 8px solid var(--primary-blue);
+    margin-bottom: 3rem;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: var(--mint-green);
+    color: var(--mint-accent);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.hero-card h1 {
+    font-size: 2.5rem;
+    color: var(--navy);
+    margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--primary-blue);
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+}
+
+.hero-description {
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-muted);
+    max-width: 820px;
+    margin-bottom: 1.5rem;
+}
+
+.hero-quote {
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    display: inline-block;
+    background: var(--primary-blue);
+    color: var(--white);
+    text-decoration: none;
+    padding: 0.9rem 1.8rem;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: var(--navy);
+    transform: translateY(-2px);
+}
+
+/* Section Grid */
+.section-heading {
+    font-size: 1.4rem;
+    color: var(--navy);
+    margin-bottom: 1.5rem;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 1.8rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 4px solid var(--mint-accent);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(15, 41, 66, 0.12);
+}
+
+.feature-card h3 {
+    color: var(--navy);
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+}
+
+.feature-card p {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+}
+
+.card-link {
+    color: var(--primary-blue);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 850px) {
+    .navbar {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+    .hero-card {
+        padding: 2rem 1.5rem;
+    }
+    .hero-card h1 {
+        font-size: 2rem;
+    }
+}
