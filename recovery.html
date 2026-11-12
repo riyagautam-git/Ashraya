@@ -1,130 +1,891 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashraya | Addiction Recovery</title>
+    <meta name="theme-color" content="#263E33">
+    <title>Ashraya | Recovery & Support</title>
+
     <link rel="stylesheet" href="assets/css/style.css">
+
     <style>
-        .streak-banner {
-            background: var(--navy);
-            color: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
+        :root {
+            --recovery-forest: #263E33;
+            --recovery-ivory: #F5F1E8;
+            --recovery-sage: #C9DCCB;
+            --recovery-clay: #D9A58B;
+            --recovery-muted: #777D74;
+            --recovery-line: #E4E0D6;
+            --recovery-white: #FFFDF8;
         }
-        .streak-count {
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: var(--mint-green);
+
+        body {
+            background: var(--recovery-ivory);
         }
-        .task-item {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--light-blue);
+
+        .recovery-page {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
         }
-        .task-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--mint-accent);
+
+        /* Compact Hero */
+
+        .recovery-hero {
+            position: relative;
+            overflow: hidden;
+            background: var(--recovery-forest);
+            color: var(--recovery-ivory);
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            margin: 1rem 0 2rem;
         }
-        .badge-pill {
+
+        .recovery-hero::after {
+            display: none;
+        }
+
+        .recovery-eyebrow {
             display: inline-block;
-            background: var(--mint-green);
-            color: var(--navy);
-            padding: 0.4rem 0.9rem;
-            border-radius: 50px;
+            color: var(--recovery-sage);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+        }
+
+        .recovery-hero h1 {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+            color: var(--recovery-ivory);
+            font-family: Georgia, serif;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            line-height: 1.2;
+            font-weight: 400;
+            margin-bottom: 0.6rem;
+        }
+
+        .recovery-hero p {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+            color: rgba(245, 241, 232, 0.82);
+            line-height: 1.6;
+        }
+
+        .recovery-back {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            margin-top: 0.8rem;
+            color: var(--recovery-sage);
             font-weight: 600;
-            font-size: 0.85rem;
-            margin: 0.3rem;
+            text-decoration: none;
+        }
+
+        .recovery-back:hover {
+            text-decoration: underline;
+        }
+
+        /* Daily check-in */
+
+        .checkin-panel {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            background: var(--recovery-sage);
+            border-radius: 22px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .checkin-panel h2 {
+            color: var(--recovery-forest);
+            font-family: Georgia, serif;
+            font-weight: 400;
+            font-size: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .checkin-panel p {
+            color: #526653;
+            line-height: 1.7;
+        }
+
+        .checkin-count {
+            display: block;
+            color: var(--recovery-forest);
+            font-family: Georgia, serif;
+            font-size: 2rem;
+            margin-top: 0.8rem;
+        }
+
+        .checkin-button {
+            border: none;
+            border-radius: 50px;
+            background: var(--recovery-forest);
+            color: white;
+            padding: 1rem 1.5rem;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .checkin-button:hover:not(:disabled) {
+            background: #385846;
+            transform: translateY(-2px);
+        }
+
+        .checkin-button:disabled {
+            opacity: 0.7;
+            cursor: default;
+        }
+
+        .checkin-message {
+            min-height: 1.5rem;
+            margin-top: 0.7rem;
+            font-size: 0.9rem;
+            color: var(--recovery-forest);
+        }
+
+        /* Main content cards */
+
+        .recovery-section-heading {
+            color: var(--recovery-forest);
+            font-family: Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin: 3rem 0 0.6rem;
+        }
+
+        .recovery-section-intro {
+            color: var(--recovery-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .recovery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.3rem;
+        }
+
+        .recovery-card {
+            background: var(--recovery-white);
+            border: 1px solid var(--recovery-line);
+            border-radius: 20px;
+            padding: 1.8rem;
+        }
+
+        .recovery-card h3 {
+            color: var(--recovery-forest);
+            font-family: Georgia, serif;
+            font-size: 1.45rem;
+            font-weight: 400;
+            margin-bottom: 0.8rem;
+        }
+
+        .recovery-card > p {
+            color: var(--recovery-muted);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        .recovery-symbol {
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #E9EEE4;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Activities */
+
+        .activity-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid var(--recovery-line);
+            color: var(--recovery-forest);
+            line-height: 1.6;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-item input {
+            width: 19px;
+            height: 19px;
+            margin-top: 3px;
+            flex-shrink: 0;
+            accent-color: var(--recovery-forest);
+            cursor: pointer;
+        }
+
+        .activity-item label {
+            cursor: pointer;
+        }
+
+        .activity-progress {
+            margin-top: 1rem;
+            color: var(--recovery-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Milestones */
+
+        .milestone-list {
+            display: grid;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .milestone {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding: 0.9rem;
+            border-radius: 13px;
+            background: #F3F1E9;
+            color: var(--recovery-muted);
+            line-height: 1.5;
+        }
+
+        .milestone.unlocked {
+            background: #E9EEE4;
+            color: var(--recovery-forest);
+        }
+
+        .milestone-icon {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .milestone strong {
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .milestone small {
+            display: block;
+            margin-top: 0.2rem;
+        }
+
+        /* Support panel */
+
+        .support-panel {
+            margin-top: 3rem;
+            padding: 2rem;
+            border-radius: 20px;
+            background: #F0E5DA;
+            color: #59483E;
+            line-height: 1.8;
+        }
+
+        .support-panel h2 {
+            color: var(--recovery-forest);
+            font-family: Georgia, serif;
+            font-weight: 400;
+            font-size: 1.7rem;
+            margin-bottom: 0.7rem;
+        }
+
+        .support-panel a {
+            color: var(--recovery-forest);
+            font-weight: 700;
+        }
+
+        .recovery-note {
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            border-left: 3px solid var(--recovery-clay);
+            color: var(--recovery-muted);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--recovery-muted);
+            line-height: 1.7;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 3px solid var(--recovery-clay);
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 700px) {
+            .recovery-page {
+                padding: 1rem 1rem 3rem;
+            }
+
+            .recovery-hero {
+                padding: 1.5rem;
+            }
+
+            .checkin-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .checkin-button {
+                width: 100%;
+            }
+
+            .recovery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
+
 <body>
+    <div class="app-container">
 
-    <nav class="navbar">
-        <a href="dashboard.html" class="logo">Ashraya</a>
-        <ul class="nav-links">
-            <li><a href="awareness.html">Mental Health Awareness</a></li>
-            <li><a href="wellness.html">Emotional Wellness</a></li>
-            <li><a href="journal.html">Wellbeing Journal</a></li>
-            <li><a href="recovery.html" class="active">Addiction Recovery</a></li>
-            <li><a href="emergency.html" class="nav-emergency">Help &amp; Emergency</a></li>
-            <li><a href="emergency.html#raya" class="nav-raya">Raya.AI</a></li>
-        </ul>
-    </nav>
+        <header class="top-header-row">
+            <div class="brand-group">
+                <a href="dashboard.html" class="logo" aria-label="Ashraya home">
+                    Ashraya<span class="logo-dot">.</span>
+                </a>
 
-    <main class="container">
-        <section class="hero-card">
-            <span class="hero-badge">Addiction Recovery</span>
-            <h1>You can take your time becoming okay.</h1>
-            <p class="hero-subtitle">Progress isn't linear—every clean hour and honest step counts.</p>
-        </section>
+                <button
+                    type="button"
+                    class="theme-toggle"
+                    id="themeToggle"
+                    aria-label="Switch to dark theme"
+                    title="Switch to dark theme"
+                >
+                    <svg class="sun-icon" viewBox="0 0 24 24"
+                         width="21" height="21" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2"></path>
+                        <path d="m4.93 4.93 1.42 1.42 M17.65 17.65l1.42 1.42"></path>
+                        <path d="m6.35 17.65-1.42 1.42 M19.07 4.93l-1.42 1.42"></path>
+                    </svg>
 
-        <!-- Streak Banner -->
-        <section class="streak-banner">
-            <div>
-                <p style="opacity: 0.85; font-size: 0.95rem;">Current Recovery Streak</p>
-                <div class="streak-count"><span id="streakNum">1</span> Day(s) Strong</div>
+                    <svg class="moon-icon" viewBox="0 0 24 24"
+                         width="21" height="21" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round"
+                         hidden>
+                        <path d="M20.9 13A9 9 0 0 1 11 3.1
+                                 9 9 0 1 0 20.9 13Z"></path>
+                    </svg>
+                </button>
             </div>
-            <button class="btn-primary" style="background: var(--mint-accent);" onclick="incrementStreak()">+ Check In Today</button>
-        </section>
 
-        <section class="cards-grid">
-            <!-- Get to know your Addiction -->
-            <div class="feature-card">
+            <nav class="top-actions" aria-label="Main navigation">
+                <a href="awareness.html" class="pill-link">Awareness</a>
+                <a href="wellness.html" class="pill-link">Wellness</a>
+                <a href="journal.html" class="pill-link">Journal</a>
+                <a href="recovery.html" class="pill-link" aria-current="page">Recovery</a>
+                <a href="emergency.html" class="pill-link pill-emergency">Emergency</a>
+                <a href="emergency.html#raya" class="pill-link pill-raya">Raya</a>
+            </nav>
+        </header>
+
+        <main class="recovery-page">
+
+            <!-- Hero -->
+            <section class="recovery-hero">
+                <span class="recovery-eyebrow">Your recovery journey</span>
+
+                <h1>You can take your time becoming okay.</h1>
+
+                <p>
+                    Recovery is personal, and progress is not always
+                    straightforward. Every moment of self-awareness,
+                    every request for support, and every small step matters.
+                </p>
+
+                <a href="dashboard.html" class="recovery-back">
+                    &larr; Back to Dashboard
+                </a>
+            </section>
+
+            <!-- Daily check-in -->
+            <section class="checkin-panel">
                 <div>
-                    <h3>Get to Know Your Addiction</h3>
-                    <p>Identify triggers, stress cues, and habits behind cravings so you can replace them with healthier routines.</p>
+                    <h2>Pause and check in with yourself.</h2>
+
+                    <p>
+                        Take a moment to recognise that you showed up
+                        for yourself today. There is no score to chase
+                        and no pressure to be perfect.
+                    </p>
+
+                    <span class="checkin-count">
+                        <span id="checkinCount">0</span> check-in days
+                    </span>
+
+                    <p class="checkin-message" id="checkinMessage"
+                       role="status" aria-live="polite">
+                        Your next check-in is whenever you're ready.
+                    </p>
                 </div>
-            </div>
 
-            <!-- Tasks to initiate Recovery -->
-            <div class="feature-card">
-                <div>
-                    <h3>Tasks to Initiate Recovery</h3>
-                    <div class="task-item"><input type="checkbox"> <span>Drink 2 glasses of water when a craving hits</span></div>
-                    <div class="task-item"><input type="checkbox"> <span>Take a 10-minute walk outdoors</span></div>
-                    <div class="task-item"><input type="checkbox"> <span>Write 3 lines in your Wellbeing Journal</span></div>
-                    <div class="task-item"><input type="checkbox"> <span>Reach out to a trusted friend or helpline</span></div>
-                </div>
-            </div>
+                <button
+                    class="checkin-button"
+                    id="checkinButton"
+                    type="button"
+                >
+                    Check in today
+                </button>
+            </section>
 
-            <!-- Earned Rewards -->
-            <div class="feature-card">
-                <div>
-                    <h3>Your Earned Rewards</h3>
-                    <p>Milestones unlocked on your healing journey:</p>
-                    <div style="margin-top: 0.75rem;">
-                        <span class="badge-pill">First Step Taken</span>
-                        <span class="badge-pill">24 Hours Clear</span>
-                        <span class="badge-pill">Mindful Starter</span>
+            <!-- Recovery activities -->
+            <h2 class="recovery-section-heading">
+                Small ways to care for yourself
+            </h2>
+
+            <p class="recovery-section-intro">
+                Choose what feels manageable today. You do not need
+                to complete everything.
+            </p>
+
+            <section class="recovery-grid">
+
+                <article class="recovery-card">
+                    <div class="recovery-symbol" aria-hidden="true">🌱</div>
+
+                    <h3>Understand your patterns</h3>
+
+                    <p>
+                        Notice situations, emotions, or experiences
+                        that may make cravings or difficult feelings
+                        stronger. Understanding a pattern is a useful
+                        first step; it is not a reason to blame yourself.
+                    </p>
+
+                    <p>
+                        Consider writing down what you noticed in your
+                        <a href="journal.html">Wellbeing Journal</a>.
+                    </p>
+                </article>
+
+                <article class="recovery-card">
+                    <div class="recovery-symbol" aria-hidden="true">🌿</div>
+
+                    <h3>Today's gentle activities</h3>
+
+                    <p>
+                        Pick one small action that might support
+                        your wellbeing today.
+                    </p>
+
+                    <ul class="activity-list">
+                        <li class="activity-item">
+                            <input type="checkbox" id="task1">
+                            <label for="task1">
+                                Drink some water and take a few
+                                comfortable breaths.
+                            </label>
+                        </li>
+
+                        <li class="activity-item">
+                            <input type="checkbox" id="task2">
+                            <label for="task2">
+                                Step outside or take a gentle
+                                10-minute walk, if comfortable.
+                            </label>
+                        </li>
+
+                        <li class="activity-item">
+                            <input type="checkbox" id="task3">
+                            <label for="task3">
+                                Write a few lines about how
+                                you are feeling.
+                            </label>
+                        </li>
+
+                        <li class="activity-item">
+                            <input type="checkbox" id="task4">
+                            <label for="task4">
+                                Reach out to someone you trust.
+                            </label>
+                        </li>
+                    </ul>
+
+                    <p class="activity-progress" id="activityProgress"
+                       role="status" aria-live="polite">
+                        0 activities selected today.
+                    </p>
+                </article>
+
+                <article class="recovery-card">
+                    <div class="recovery-symbol" aria-hidden="true">🌼</div>
+
+                    <h3>Notice your milestones</h3>
+
+                    <p>
+                        These milestones recognise moments of
+                        reflection and self-care, not abstinence
+                        or a perfect recovery record.
+                    </p>
+
+                    <div class="milestone-list" id="milestoneList">
+                        <div class="milestone">
+                            <span class="milestone-icon">🌱</span>
+                            <div>
+                                <strong>First check-in</strong>
+                                <small>Make space for yourself.</small>
+                            </div>
+                        </div>
+
+                        <div class="milestone">
+                            <span class="milestone-icon">🌿</span>
+                            <div>
+                                <strong>Five check-in days</strong>
+                                <small>Keep making time to reflect.</small>
+                            </div>
+                        </div>
+
+                        <div class="milestone">
+                            <span class="milestone-icon">🌻</span>
+                            <div>
+                                <strong>Ten check-in days</strong>
+                                <small>Recognise your continued effort.</small>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
-    </main>
+                </article>
 
-    <footer>
-        <p>Ashraya &mdash; National De-addiction Helpline: <strong>1800-11-0031</strong></p>
-    </footer>
+                <article class="recovery-card">
+                    <div class="recovery-symbol" aria-hidden="true">🤝</div>
+
+                    <h3>You do not have to do this alone</h3>
+
+                    <p>
+                        Support from a trained professional,
+                        counsellor, doctor, or trusted person can
+                        make a meaningful difference.
+                    </p>
+
+                    <p>
+                        Asking for help is a strength. You deserve
+                        support without judgement.
+                    </p>
+
+                    <a href="emergency.html">
+                        Explore support and helplines &rarr;
+                    </a>
+                </article>
+
+            </section>
+
+            <!-- Support -->
+            <section class="support-panel">
+                <h2>Support is always worth reaching for.</h2>
+
+                <p>
+                    If you are looking for help with substance use
+                    or addiction, consider speaking with a qualified
+                    healthcare professional or a de-addiction service.
+                </p>
+
+                <p>
+                    India's National De-addiction Helpline:
+                    <strong>1800-11-0031</strong>
+                </p>
+
+                <p>
+                    You can also contact Tele-MANAS at
+                    <strong>14416</strong> for mental health support.
+                </p>
+
+                <p>
+                    If you are in immediate danger, call
+                    <strong>112</strong> or go to the nearest emergency
+                    department.
+                </p>
+            </section>
+
+            <p class="recovery-note">
+                Ashraya is a wellbeing support resource, not a substitute
+                for professional treatment. Recovery can involve setbacks
+                and different kinds of support. A difficult day does not
+                erase the effort you have made.
+            </p>
+
+        </main>
+
+        <footer>
+            <p>
+                Ashraya — Every step deserves compassion.
+                <br>
+                National De-addiction Helpline:
+                <strong>1800-11-0031</strong>
+            </p>
+        </footer>
+
+    </div>
+
+    <script src="assets/js/theme.js"></script>
 
     <script>
-        let streak = parseInt(localStorage.getItem('ashraya_streak') || '1', 10);
-        document.getElementById('streakNum').textContent = streak;
+        const CHECKIN_KEY = "ashraya_recovery_checkins";
+        const TASK_KEY = "ashraya_recovery_daily_tasks";
 
-        function incrementStreak() {
-            streak += 1;
-            localStorage.setItem('ashraya_streak', streak);
-            document.getElementById('streakNum').textContent = streak;
+        const checkinCountElement =
+            document.getElementById("checkinCount");
+
+        const checkinButton =
+            document.getElementById("checkinButton");
+
+        const checkinMessage =
+            document.getElementById("checkinMessage");
+
+        const activityProgress =
+            document.getElementById("activityProgress");
+
+        const taskIds = ["task1", "task2", "task3", "task4"];
+
+        // Use local calendar dates rather than UTC dates.
+        function getTodayKey() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, "0");
+            const day = String(now.getDate()).padStart(2, "0");
+
+            return `${year}-${month}-${day}`;
         }
+
+        // Read check-in dates safely.
+        function getCheckins() {
+            try {
+                const saved = JSON.parse(
+                    localStorage.getItem(CHECKIN_KEY) || "[]"
+                );
+
+                return Array.isArray(saved) ? saved : [];
+            } catch (error) {
+                console.error("Could not read check-ins:", error);
+                return [];
+            }
+        }
+
+        function saveCheckins(checkins) {
+            try {
+                localStorage.setItem(
+                    CHECKIN_KEY,
+                    JSON.stringify(checkins)
+                );
+                return true;
+            } catch (error) {
+                console.error("Could not save check-ins:", error);
+                checkinMessage.textContent =
+                    "Your check-in could not be saved. Check browser storage settings.";
+                return false;
+            }
+        }
+
+        // Update the check-in display.
+        function updateCheckinDisplay() {
+            const checkins = getCheckins();
+            const today = getTodayKey();
+            const checkedInToday = checkins.includes(today);
+
+            checkinCountElement.textContent = checkins.length;
+
+            if (checkedInToday) {
+                checkinButton.textContent = "Checked in today";
+                checkinButton.disabled = true;
+                checkinMessage.textContent =
+                    "You made time for yourself today. Be gentle with yourself.";
+            } else {
+                checkinButton.textContent = "Check in today";
+                checkinButton.disabled = false;
+                checkinMessage.textContent =
+                    "Your next check-in is whenever you're ready.";
+            }
+
+            updateMilestones(checkins.length);
+        }
+
+        // A check-in can only be recorded once per calendar day.
+        checkinButton.addEventListener("click", function() {
+            const checkins = getCheckins();
+            const today = getTodayKey();
+
+            if (checkins.includes(today)) {
+                updateCheckinDisplay();
+                return;
+            }
+
+            checkins.push(today);
+
+            if (saveCheckins(checkins)) {
+                updateCheckinDisplay();
+            }
+        });
+
+        // Display milestones based on check-in days, not recovery streaks.
+        function updateMilestones(count) {
+            const milestones = [
+                {
+                    number: 1,
+                    title: "First check-in",
+                    description: "You made space for yourself.",
+                    icon: "🌱"
+                },
+                {
+                    number: 5,
+                    title: "Five check-in days",
+                    description: "You've taken time to reflect.",
+                    icon: "🌿"
+                },
+                {
+                    number: 10,
+                    title: "Ten check-in days",
+                    description: "Your effort deserves recognition.",
+                    icon: "🌻"
+                }
+            ];
+
+            const list = document.getElementById("milestoneList");
+            list.replaceChildren();
+
+            milestones.forEach(item => {
+                const unlocked = count >= item.number;
+
+                const milestone = document.createElement("div");
+                milestone.className =
+                    unlocked ? "milestone unlocked" : "milestone";
+
+                const icon = document.createElement("span");
+                icon.className = "milestone-icon";
+                icon.textContent = item.icon;
+
+                const content = document.createElement("div");
+
+                const title = document.createElement("strong");
+                title.textContent = item.title;
+
+                const description = document.createElement("small");
+                description.textContent = unlocked
+                    ? item.description
+                    : "Available after " + item.number + " check-in days.";
+
+                content.append(title, description);
+                milestone.append(icon, content);
+                list.appendChild(milestone);
+            });
+        }
+
+        // Read today's activity selections.
+        function getDailyTasks() {
+            try {
+                const saved = JSON.parse(
+                    localStorage.getItem(TASK_KEY) || "{}"
+                );
+
+                if (saved.date !== getTodayKey()) {
+                    return {};
+                }
+
+                return saved.tasks || {};
+            } catch (error) {
+                console.error("Could not read activities:", error);
+                return {};
+            }
+        }
+
+        function saveDailyTasks(tasks) {
+            try {
+                localStorage.setItem(
+                    TASK_KEY,
+                    JSON.stringify({
+                        date: getTodayKey(),
+                        tasks: tasks
+                    })
+                );
+                return true;
+            } catch (error) {
+                console.error("Could not save activities:", error);
+                return false;
+            }
+        }
+
+        // Restore today's activity selections.
+        function loadDailyTasks() {
+            const tasks = getDailyTasks();
+
+            taskIds.forEach(id => {
+                document.getElementById(id).checked =
+                    tasks[id] === true;
+            });
+
+            updateActivityProgress();
+        }
+
+        // Save changes when an activity is selected or unselected.
+        taskIds.forEach(id => {
+            document.getElementById(id).addEventListener("change", () => {
+                const tasks = {};
+
+                taskIds.forEach(taskId => {
+                    tasks[taskId] =
+                        document.getElementById(taskId).checked;
+                });
+
+                if (!saveDailyTasks(tasks)) {
+                    activityProgress.textContent =
+                        "Could not save your selections in this browser.";
+                    return;
+                }
+
+                updateActivityProgress();
+            });
+        });
+
+        function updateActivityProgress() {
+            const selected = taskIds.filter(id =>
+                document.getElementById(id).checked
+            ).length;
+
+            activityProgress.textContent =
+                selected + " of " + taskIds.length +
+                " activities selected today. Choose only what feels manageable.";
+        }
+
+        // Initialise the page.
+        updateCheckinDisplay();
+        loadDailyTasks();
     </script>
 </body>
 </html>

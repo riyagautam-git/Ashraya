@@ -1,116 +1,1055 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#263E33">
     <title>Ashraya | Wellbeing Journal</title>
+
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/theme.js"></script>
+
     <style>
-        .journal-box {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            margin-bottom: 2.5rem;
+        :root {
+            --journal-forest: #263E33;
+            --journal-ivory: #F5F1E8;
+            --journal-sage: #C9DCCB;
+            --journal-clay: #D9A58B;
+            --journal-muted: #777D74;
+            --journal-line: #E4E0D6;
+            --journal-white: #FFFDF8;
         }
-        textarea {
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
             width: 100%;
-            min-height: 150px;
-            padding: 1rem;
-            border: 2px solid var(--light-blue);
-            border-radius: 12px;
-            font-size: 1rem;
-            resize: vertical;
-            margin: 1rem 0;
-            outline: none;
+            overflow-x: hidden;
         }
-        textarea:focus {
-            border-color: var(--primary-blue);
+
+        body {
+            background: var(--journal-ivory);
         }
-        .entry-card {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+
+        .journal-page {
+            width: 100%;
+            max-width: 1080px;
+            min-width: 0;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        /* Header */
+        .top-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .brand-group {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-shrink: 0;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            min-width: 0;
+        }
+
+        .pill-link {
+            white-space: nowrap;
+        }
+
+        /* Journal hero */
+        .journal-hero {
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 1.4fr 0.6fr;
+            align-items: center;
+            gap: 2rem;
+            background: var(--journal-forest);
+            color: var(--journal-ivory);
+            border-radius: 28px;
+            padding: 4rem 3.5rem;
+            margin: 2rem 0 3rem;
+        }
+
+        .journal-hero::after {
+            content: "";
+            position: absolute;
+            width: 280px;
+            height: 280px;
+            border: 1px solid rgba(245, 241, 232, 0.2);
+            border-radius: 48% 52% 65% 35%;
+            right: 7%;
+            top: 12%;
+            transform: rotate(-25deg);
+        }
+
+        .journal-hero-art {
+            position: relative;
+            z-index: 1;
+            width: 190px;
+            height: 190px;
+            margin: auto;
+            border-radius: 50% 50% 42% 58%;
+            background: var(--journal-sage);
+            transform: rotate(-12deg);
+        }
+
+        .journal-hero-art::before {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 145px;
+            background: var(--journal-clay);
+            border-radius: 100% 0 100% 0;
+            top: 18px;
+            left: 45px;
+            transform: rotate(35deg);
+        }
+
+        .journal-hero-art::after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 130px;
+            background: var(--journal-forest);
+            top: 35px;
+            left: 95px;
+            transform: rotate(35deg);
+        }
+
+        .journal-eyebrow {
+            display: inline-block;
+            color: var(--journal-sage);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            border-left: 5px solid var(--mint-accent);
         }
-        .entry-date {
-            font-size: 0.85rem;
-            color: var(--primary-blue);
+
+        .journal-hero h1 {
+            color: var(--journal-ivory);
+            font-family: Georgia, serif;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 1.1;
+            font-weight: 400;
+            max-width: 600px;
+            margin-bottom: 1rem;
+        }
+
+        .journal-hero p {
+            color: rgba(245, 241, 232, 0.8);
+            line-height: 1.8;
+            max-width: 480px;
+        }
+
+        .journal-back {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--journal-sage);
+            text-decoration: none;
             font-weight: 600;
+        }
+
+        .journal-back:hover {
+            text-decoration: underline;
+        }
+
+        /* Writing area */
+        .journal-writing-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(230px, 0.7fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .journal-box,
+        .journal-prompts,
+        .entry-card {
+            background: var(--journal-white);
+            border: 1px solid var(--journal-line);
+            border-radius: 20px;
+            min-width: 0;
+        }
+
+        .journal-box {
+            padding: 2rem;
+        }
+
+        .journal-box h2,
+        .journal-prompts h2,
+        .entries-heading {
+            color: var(--journal-forest);
+            font-family: Georgia, serif;
+            font-weight: 400;
+        }
+
+        .journal-box h2 {
+            font-size: 1.8rem;
             margin-bottom: 0.5rem;
+        }
+
+        .journal-intro {
+            color: var(--journal-muted);
+            line-height: 1.7;
+            margin-bottom: 1.2rem;
+        }
+
+        .journal-box label {
+            display: block;
+            color: var(--journal-forest);
+            font-weight: 600;
+            margin-bottom: 0.6rem;
+        }
+
+        #journalInput {
+            display: block;
+            width: 100%;
+            min-height: 230px;
+            resize: vertical;
+            padding: 1.2rem;
+            border: 1px solid var(--journal-line);
+            border-radius: 14px;
+            background: #FAF8F1;
+            color: var(--journal-forest);
+            font: inherit;
+            line-height: 1.8;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        #journalInput:focus {
+            border-color: var(--journal-forest);
+            box-shadow: 0 0 0 3px rgba(38, 62, 51, 0.1);
+        }
+
+        #journalInput::placeholder {
+            color: #999B91;
+        }
+
+        .journal-form-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .character-count {
+            font-size: 0.85rem;
+            color: var(--journal-muted);
+        }
+
+        .journal-save-button {
+            border: none;
+            border-radius: 50px;
+            padding: 0.9rem 1.7rem;
+            background: var(--journal-forest);
+            color: white;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        .journal-save-button:hover {
+            background: #385846;
+            transform: translateY(-2px);
+        }
+
+        .journal-save-button:focus-visible,
+        .prompt-button:focus-visible,
+        .delete-button:focus-visible {
+            outline: 3px solid var(--journal-clay);
+            outline-offset: 3px;
+        }
+
+        .journal-message {
+            min-height: 1.5rem;
+            margin-top: 0.8rem;
+            color: var(--journal-forest);
+            font-size: 0.9rem;
+        }
+
+        /* Writing prompts */
+        .journal-prompts {
+            padding: 1.7rem;
+            background: #E9EEE4;
+        }
+
+        .journal-prompts h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .journal-prompts > p {
+            color: #626F62;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .prompt-button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.9rem 1rem;
+            margin-top: 0.7rem;
+            border: 1px solid rgba(38, 62, 51, 0.12);
+            border-radius: 12px;
+            background: rgba(255, 253, 248, 0.75);
+            color: var(--journal-forest);
+            font: inherit;
+            line-height: 1.5;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .prompt-button:hover {
+            background: white;
+        }
+
+        /* Saved entries */
+        .entries-section {
+            margin-top: 4rem;
+            min-width: 0;
+        }
+
+        .entries-heading {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .entries-intro {
+            color: var(--journal-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .entry-card {
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .entry-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .entry-date {
+            color: #627B66;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .entry-text {
+            color: var(--journal-forest);
+            line-height: 1.8;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .delete-button {
+            border: 1px solid var(--journal-line);
+            background: transparent;
+            color: #8A6255;
+            border-radius: 30px;
+            padding: 0.45rem 0.8rem;
+            font: inherit;
+            font-size: 0.8rem;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background: #F8EDE7;
+        }
+
+        .empty-journal {
+            padding: 2rem;
+            border: 1px dashed #C9C9BA;
+            border-radius: 18px;
+            color: var(--journal-muted);
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        /* Privacy note */
+        .privacy-note {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-top: 3rem;
+            padding: 1.4rem;
+            border-radius: 16px;
+            background: #E9EEE4;
+            color: #526653;
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        .privacy-note strong {
+            color: var(--journal-forest);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--journal-muted);
+            line-height: 1.7;
+        }
+
+        /* Compact page intro */
+        .journal-hero {
+            grid-template-columns: 1fr;
+            padding: 1.5rem 2rem;
+            margin: 1rem 0 2rem;
+            border-radius: 18px;
+        }
+
+        .journal-hero-art,
+        .journal-hero::after {
+            display: none;
+        }
+
+        .journal-hero h1 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .journal-hero p {
+            line-height: 1.5;
+        }
+
+        .journal-back {
+            margin-top: 0.5rem;
+        }
+
+        /* Tablet layout */
+        @media (max-width: 850px) {
+            .top-header-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .top-actions {
+                width: 100%;
+                justify-content: flex-start;
+            }
+
+            .journal-page {
+                padding: 1.5rem 1.2rem 3rem;
+            }
+
+            .journal-hero {
+                grid-template-columns: 1fr;
+                padding: 1.5rem 1.8rem;
+                margin: 1rem 0 2rem;
+            }
+
+            .journal-hero-art,
+            .journal-hero::after {
+                display: none;
+            }
+
+            .journal-hero h1 {
+                font-size: clamp(1.8rem, 4vw, 2.5rem);
+            }
+
+            .journal-writing-layout {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 1.3rem;
+            }
+
+            .journal-box,
+            .journal-prompts {
+                width: 100%;
+            }
+
+            .entries-section {
+                margin-top: 2.5rem;
+            }
+        }
+
+        /* Mobile layout */
+        @media (max-width: 600px) {
+            .top-header-row {
+                gap: 0.8rem;
+            }
+
+            .top-actions {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                width: 100%;
+                gap: 0.5rem;
+            }
+
+            .pill-link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                white-space: normal;
+                min-width: 0;
+                padding: 0.65rem 0.4rem;
+                font-size: 0.85rem;
+            }
+
+            .journal-page {
+                padding: 1rem 0.85rem 2.5rem;
+            }
+
+            .journal-hero {
+                padding: 1.4rem 1.2rem;
+                border-radius: 16px;
+            }
+
+            .journal-hero h1 {
+                font-size: 1.9rem;
+                line-height: 1.2;
+            }
+
+            .journal-hero p {
+                font-size: 0.92rem;
+                line-height: 1.6;
+            }
+
+            .journal-box,
+            .journal-prompts {
+                padding: 1.25rem;
+                border-radius: 16px;
+            }
+
+            .journal-box h2 {
+                font-size: 1.5rem;
+            }
+
+            .journal-prompts h2 {
+                font-size: 1.35rem;
+            }
+
+            #journalInput {
+                min-height: 190px;
+                padding: 0.9rem;
+                font-size: 0.95rem;
+            }
+
+            .journal-form-footer {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .journal-save-button {
+                width: 100%;
+            }
+
+            .entry-card {
+                padding: 1.1rem;
+            }
+
+            .entry-card-header {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+
+            .privacy-note {
+                padding: 1rem;
+                gap: 0.7rem;
+                font-size: 0.85rem;
+            }
+
+            .entries-heading {
+                font-size: 1.7rem;
+            }
+
+            footer {
+                padding: 1.5rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* Very small phones */
+        @media (max-width: 380px) {
+            .journal-page {
+                padding-left: 0.65rem;
+                padding-right: 0.65rem;
+            }
+
+            .journal-hero {
+                padding: 1.2rem 1rem;
+            }
+
+            .journal-hero h1 {
+                font-size: 1.65rem;
+            }
+
+            .journal-box,
+            .journal-prompts {
+                padding: 1rem;
+            }
+
+            .top-actions {
+                gap: 0.35rem;
+            }
+
+            .pill-link {
+                font-size: 0.78rem;
+            }
+
+            .journal-save-button {
+                padding: 0.8rem 1rem;
+            }
+        }
+
+        /* Dark theme */
+        body.dark-theme {
+            background: #17251E;
+            color: #EAEDE5;
+        }
+
+        body.dark-theme .journal-box,
+        body.dark-theme .entry-card {
+            background: #22352A;
+            border-color: #3A4D40;
+        }
+
+        body.dark-theme .journal-prompts,
+        body.dark-theme .privacy-note {
+            background: #2B4032;
+            border-color: #3A4D40;
+            color: #D5E0D3;
+        }
+
+        body.dark-theme .journal-box h2,
+        body.dark-theme .journal-prompts h2,
+        body.dark-theme .entries-heading,
+        body.dark-theme .journal-box label,
+        body.dark-theme .entry-text,
+        body.dark-theme .privacy-note strong {
+            color: #E7EEE4;
+        }
+
+        body.dark-theme .journal-intro,
+        body.dark-theme .entries-intro,
+        body.dark-theme .character-count {
+            color: #B8C5B8;
+        }
+
+        body.dark-theme #journalInput {
+            background: #192A20;
+            color: #EAEDE5;
+            border-color: #526656;
+        }
+
+        body.dark-theme .prompt-button {
+            background: #354B3A;
+            color: #EAEDE5;
+            border-color: #526656;
+        }
+
+        body.dark-theme .prompt-button:hover {
+            background: #405A46;
+        }
+
+        body.dark-theme .entry-date {
+            color: #B5D0B5;
+        }
+
+        body.dark-theme .delete-button {
+            border-color: #526656;
+            color: #E5B6A2;
+        }
+
+        body.dark-theme .empty-journal {
+            border-color: #526656;
+            color: #B8C5B8;
+        }
+
+        body.dark-theme .journal-message,
+        body.dark-theme footer {
+            color: #C4D0C3;
+        }
+
+        body.dark-theme .journal-save-button {
+            background: #C9DCCB;
+            color: #263E33;
+        }
+
+        body.dark-theme .journal-save-button:hover {
+            background: #DCE9DA;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
+
 <body>
+    <div class="app-container">
 
-    <nav class="navbar">
-        <a href="dashboard.html" class="logo">Ashraya</a>
-        <ul class="nav-links">
-            <li><a href="awareness.html">Mental Health Awareness</a></li>
-            <li><a href="wellness.html">Emotional Wellness</a></li>
-            <li><a href="journal.html" class="active">Wellbeing Journal</a></li>
-            <li><a href="recovery.html">Addiction Recovery</a></li>
-            <li><a href="emergency.html" class="nav-emergency">Help &amp; Emergency</a></li>
-            <li><a href="emergency.html#raya" class="nav-raya">Raya.AI</a></li>
-        </ul>
-    </nav>
+        <header class="top-header-row">
+            <div class="brand-group">
+                <a href="dashboard.html" class="logo" aria-label="Ashraya home">
+                    Ashraya<span class="logo-dot">.</span>
+                </a>
 
-    <main class="container">
-        <section class="hero-card">
-            <span class="hero-badge">Wellbeing Journal</span>
-            <h1>Some chapters take longer to write.</h1>
-            <p class="hero-subtitle">A private space to clear your mind and reflect.</p>
-        </section>
+                <button
+                    type="button"
+                    class="theme-toggle"
+                    id="themeToggle"
+                    aria-label="Switch to dark theme"
+                    title="Switch to dark theme"
+                >
+                    <svg class="sun-icon" viewBox="0 0 24 24"
+                         width="21" height="21" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2"></path>
+                        <path d="m4.93 4.93 1.42 1.42 M17.65 17.65l1.42 1.42"></path>
+                        <path d="m6.35 17.65-1.42 1.42 M19.07 4.93l-1.42 1.42"></path>
+                    </svg>
 
-        <section class="journal-box">
-            <h2 style="color: var(--navy);">Write what you thought / felt today</h2>
-            <textarea id="journalInput" placeholder="Let your thoughts flow freely here..."></textarea>
-            <button class="btn-primary" onclick="saveEntry()">Save Entry</button>
-        </section>
+                    <svg class="moon-icon" viewBox="0 0 24 24"
+                         width="21" height="21" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round"
+                         hidden>
+                        <path d="M20.9 13A9 9 0 0 1 11 3.1
+                                 9 9 0 1 0 20.9 13Z"></path>
+                    </svg>
+                </button>
+            </div>
 
-        <section>
-            <h2 class="section-heading">View Your Past Thinking</h2>
-            <div id="entriesList"></div>
-        </section>
-    </main>
+            <nav class="top-actions" aria-label="Main navigation">
+                <a href="awareness.html" class="pill-link">Awareness</a>
+                <a href="wellness.html" class="pill-link">Wellness</a>
+                <a href="journal.html" class="pill-link" aria-current="page">Journal</a>
+                <a href="recovery.html" class="pill-link">Recovery</a>
+                <a href="emergency.html" class="pill-link pill-emergency">Emergency</a>
+                <a href="emergency.html#raya" class="pill-link pill-raya">Raya</a>
+            </nav>
+        </header>
 
-    <footer>
-        <p>Ashraya &mdash; Mindfulness and Mental Wellbeing | Need immediate support? Call Tele-MANAS at <strong>14416</strong></p>
-    </footer>
+        <main class="journal-page">
+
+            <section class="journal-hero">
+                <div>
+                    <span class="journal-eyebrow">Your personal reflection space</span>
+                    <h1>Some chapters take longer to write.</h1>
+                    <p>
+                        A gentle space to pause, understand your feelings,
+                        and give your thoughts room to breathe.
+                    </p>
+                    <a href="dashboard.html" class="journal-back">
+                        &larr; Back to Dashboard
+                    </a>
+                </div>
+
+                <div class="journal-hero-art" aria-hidden="true"></div>
+            </section>
+
+            <section class="journal-writing-layout">
+
+                <div class="journal-box">
+                    <h2>How are you feeling today?</h2>
+                    <p class="journal-intro">
+                        There is no right way to journal. Start wherever
+                        your thoughts take you.
+                    </p>
+
+                    <form id="journalForm">
+                        <label for="journalInput">Your reflection</label>
+
+                        <textarea
+                            id="journalInput"
+                            maxlength="10000"
+                            placeholder="Let your thoughts flow freely here..."
+                            required
+                        ></textarea>
+
+                        <div class="journal-form-footer">
+                            <span class="character-count" id="characterCount">
+                                0 / 10,000 characters
+                            </span>
+
+                            <button type="submit" class="journal-save-button">
+                                Save Reflection
+                            </button>
+                        </div>
+
+                        <p
+                            class="journal-message"
+                            id="journalMessage"
+                            role="status"
+                            aria-live="polite"
+                        ></p>
+                    </form>
+                </div>
+
+                <aside class="journal-prompts">
+                    <h2>A little inspiration</h2>
+                    <p>
+                        Not sure what to write? Choose a prompt to get started.
+                    </p>
+
+                    <button type="button" class="prompt-button">
+                        What is one thing I am grateful for today?
+                    </button>
+
+                    <button type="button" class="prompt-button">
+                        What has been taking up space in my mind?
+                    </button>
+
+                    <button type="button" class="prompt-button">
+                        What do I need more of right now?
+                    </button>
+
+                    <button type="button" class="prompt-button">
+                        What is one kind thing I can tell myself?
+                    </button>
+
+                    <button type="button" class="prompt-button">
+                        What would make tomorrow feel a little easier?
+                    </button>
+                </aside>
+
+            </section>
+
+            <section class="entries-section">
+                <h2 class="entries-heading">Your reflections</h2>
+                <p class="entries-intro">
+                    Look back whenever you feel ready. Every entry is part
+                    of your journey.
+                </p>
+
+                <div id="entriesList" aria-live="polite"></div>
+            </section>
+
+            <aside class="privacy-note">
+                <span aria-hidden="true">🌿</span>
+                <div>
+                    <strong>A note about your privacy</strong><br>
+                    Your journal entries are saved in this browser using
+                    local storage. They are not uploaded to an Ashraya
+                    account or encrypted cloud storage. Anyone with access
+                    to this browser profile may be able to view them.
+                    Avoid writing passwords or highly sensitive information.
+                    Clearing browser data may permanently remove your entries.
+                </div>
+            </aside>
+
+        </main>
+
+        <footer>
+            <p>
+                Ashraya — A space for mindfulness and mental wellbeing.
+                <br>
+                Need immediate support? Call Tele-MANAS at
+                <strong>14416</strong>.
+            </p>
+        </footer>
+
+    </div>
 
     <script>
+        const STORAGE_KEY = "ashraya_journal";
+
+        const journalForm = document.getElementById("journalForm");
+        const journalInput = document.getElementById("journalInput");
+        const entriesList = document.getElementById("entriesList");
+        const characterCount = document.getElementById("characterCount");
+        const journalMessage = document.getElementById("journalMessage");
+
+        // Read journal entries safely from local storage.
+        function getEntries() {
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                const entries = JSON.parse(saved || "[]");
+
+                return Array.isArray(entries) ? entries : [];
+            } catch (error) {
+                console.error("Could not read journal entries:", error);
+                return [];
+            }
+        }
+
+        // Save entries to local storage.
+        function storeEntries(entries) {
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+                return true;
+            } catch (error) {
+                console.error("Could not save journal entries:", error);
+                journalMessage.textContent =
+                    "Your entry could not be saved. Check your browser storage settings.";
+                return false;
+            }
+        }
+
+        // Display saved entries using textContent, not innerHTML.
         function loadEntries() {
-            const entries = JSON.parse(localStorage.getItem('ashraya_journal') || '[]');
-            const list = document.getElementById('entriesList');
+            const entries = getEntries();
+
+            entriesList.replaceChildren();
+
             if (entries.length === 0) {
-                list.innerHTML = '<p style="color: var(--text-muted);">No entries yet. Write your first reflection above!</p>';
+                const emptyMessage = document.createElement("div");
+                emptyMessage.className = "empty-journal";
+                emptyMessage.textContent =
+                    "Your journal is waiting for its first reflection. " +
+                    "Whenever you feel ready, you can begin above.";
+
+                entriesList.appendChild(emptyMessage);
                 return;
             }
-            list.innerHTML = entries.map(item => `
-                <div class="entry-card">
-                    <div class="entry-date">${item.date}</div>
-                    <p style="line-height: 1.6; white-space: pre-wrap;">${item.text}</p>
-                </div>
-            `).join('');
-        }
 
-        function saveEntry() {
-            const input = document.getElementById('journalInput');
-            const text = input.value.trim();
-            if (!text) return;
-            const entries = JSON.parse(localStorage.getItem('ashraya_journal') || '[]');
-            const date = new Date().toLocaleDateString('en-IN', {
-                day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            entries.forEach((entry, index) => {
+                const card = document.createElement("article");
+                card.className = "entry-card";
+
+                const header = document.createElement("div");
+                header.className = "entry-card-header";
+
+                const date = document.createElement("div");
+                date.className = "entry-date";
+                date.textContent = entry.date || "Saved reflection";
+
+                const deleteButton = document.createElement("button");
+                deleteButton.type = "button";
+                deleteButton.className = "delete-button";
+                deleteButton.textContent = "Delete";
+                deleteButton.setAttribute(
+                    "aria-label",
+                    "Delete reflection " + (index + 1)
+                );
+
+                deleteButton.addEventListener("click", () => {
+                    deleteEntry(index);
+                });
+
+                const text = document.createElement("p");
+                text.className = "entry-text";
+                text.textContent = entry.text || "";
+
+                header.append(date, deleteButton);
+                card.append(header, text);
+                entriesList.appendChild(card);
             });
-            entries.unshift({ date, text });
-            localStorage.setItem('ashraya_journal', JSON.stringify(entries));
-            input.value = '';
-            loadEntries();
         }
 
-        window.onload = loadEntries;
+        // Save a new reflection.
+        journalForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const text = journalInput.value.trim();
+
+            if (!text) {
+                journalMessage.textContent =
+                    "Write a little something before saving your reflection.";
+                journalInput.focus();
+                return;
+            }
+
+            const entries = getEntries();
+
+            const newEntry = {
+                id: Date.now().toString() + Math.random().toString(16).slice(2),
+                date: new Date().toLocaleString("en-IN", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }),
+                text: text
+            };
+
+            entries.unshift(newEntry);
+
+            if (storeEntries(entries)) {
+                journalInput.value = "";
+                updateCharacterCount();
+                journalMessage.textContent =
+                    "Your reflection has been saved. Take a moment for yourself.";
+                loadEntries();
+            }
+        });
+
+        // Delete an individual reflection.
+        function deleteEntry(index) {
+            const confirmed = window.confirm(
+                "Are you sure you want to delete this reflection? This cannot be undone."
+            );
+
+            if (!confirmed) return;
+
+            const entries = getEntries();
+            entries.splice(index, 1);
+
+            if (storeEntries(entries)) {
+                journalMessage.textContent = "Reflection deleted.";
+                loadEntries();
+            }
+        }
+
+        // Update the character counter.
+        function updateCharacterCount() {
+            characterCount.textContent =
+                journalInput.value.length + " / 10,000 characters";
+        }
+
+        journalInput.addEventListener("input", updateCharacterCount);
+
+        // Insert a selected writing prompt into the text area.
+        document.querySelectorAll(".prompt-button").forEach(button => {
+            button.addEventListener("click", () => {
+                const prompt = button.textContent.trim();
+
+                if (journalInput.value.trim()) {
+                    journalInput.value += "\n\n" + prompt + "\n";
+                } else {
+                    journalInput.value = prompt + "\n";
+                }
+
+                updateCharacterCount();
+                journalInput.focus();
+                journalMessage.textContent =
+                    "Prompt added. Write whenever you're ready.";
+            });
+        });
+
+        // Load saved reflections when the page opens.
+        loadEntries();
+        updateCharacterCount();
     </script>
 </body>
 </html>

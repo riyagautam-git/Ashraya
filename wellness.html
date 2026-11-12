@@ -1,184 +1,467 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f1e8">
+    <meta name="description" content="Pause, check in with your emotions and explore gentle wellbeing practices with Ashraya.">
     <title>Ashraya | Emotional Wellness</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <style>
-        .wellness-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2.5rem;
-        }
-        .tool-box {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-        .tool-box h3 {
-            color: var(--navy);
-            margin-bottom: 0.75rem;
-        }
-        .breathe-circle {
-            width: 140px;
-            height: 140px;
-            margin: 1.5rem auto;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--light-blue), var(--mint-green));
-            border: 4px solid var(--mint-accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: var(--navy);
-            transition: transform 4s ease-in-out;
-        }
-        .breathe-circle.expand {
-            transform: scale(1.25);
-        }
-        .mood-buttons {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin: 1rem 0;
-        }
-        .mood-btn {
-            border: 2px solid var(--light-blue);
-            background: var(--white);
-            padding: 0.6rem 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--navy);
-            transition: all 0.2s;
-        }
-        .mood-btn:hover, .mood-btn.selected {
-            background: var(--primary-blue);
-            color: var(--white);
-            border-color: var(--primary-blue);
-        }
-        .status-msg {
-            margin-top: 0.75rem;
-            font-size: 0.9rem;
-            color: var(--mint-accent);
-            font-weight: 600;
-        }
-    </style>
+    <script src="assets/js/theme.js"></script>
 </head>
+
 <body>
+<div class="app-container">
 
-    <nav class="navbar">
-        <a href="dashboard.html" class="logo">Ashraya</a>
-        <ul class="nav-links">
-            <li><a href="awareness.html">Mental Health Awareness</a></li>
-            <li><a href="wellness.html" class="active">Emotional Wellness</a></li>
-            <li><a href="journal.html">Wellbeing Journal</a></li>
-            <li><a href="recovery.html">Addiction Recovery</a></li>
-            <li><a href="emergency.html" class="nav-emergency">Help &amp; Emergency</a></li>
-            <li><a href="emergency.html#raya" class="nav-raya">Raya.AI</a></li>
-        </ul>
-    </nav>
+    <!-- Header -->
+    <header class="top-header-row">
+<div class="brand-group">
+    <a href="dashboard.html" class="logo" aria-label="Ashraya home">
+        Ashraya<span class="logo-dot">.</span>
+    </a>
 
-    <main class="container">
-        <section class="hero-card">
-            <span class="hero-badge">Emotional Wellness</span>
-            <h1>You are more than the hardest chapter of your life.</h1>
-            <p class="hero-subtitle">Pause, check in with yourself, and find steady ground.</p>
-            <p class="hero-description">
-                Understanding your emotions helps you respond rather than react. Use the guided breathing circle below or log how you are feeling right now.
-            </p>
-        </section>
+    <button
+        type="button"
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Switch to dark theme"
+        title="Switch to dark theme"
+    >
+        <svg class="sun-icon" viewBox="0 0 24 24"
+             width="21" height="21" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2"></path>
+            <path d="m4.93 4.93 1.42 1.42 M17.65 17.65l1.42 1.42"></path>
+            <path d="m6.35 17.65-1.42 1.42 M19.07 4.93l-1.42 1.42"></path>
+        </svg>
 
-        <section class="wellness-grid">
-            <!-- Breathing Exercise -->
-            <div class="tool-box" style="text-align: center;">
-                <h3>Take a Moment to Breathe</h3>
-                <p style="color: var(--text-muted); font-size: 0.92rem;">Follow the circle: 4s Inhale &bull; 4s Hold &bull; 4s Exhale</p>
-                <div id="breatheCircle" class="breathe-circle">Ready</div>
-                <button class="btn-primary" onclick="startBreathing()">Start 1-Minute Calm</button>
+        <svg class="moon-icon" viewBox="0 0 24 24"
+             width="21" height="21" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             hidden>
+            <path d="M20.9 13A9 9 0 0 1 11 3.1
+                     9 9 0 1 0 20.9 13Z"></path>
+        </svg>
+    </button>
+</div>
+
+        <nav class="top-actions" aria-label="Main navigation">
+            <a href="dashboard.html" class="pill-link">Home</a>
+            <a href="awareness.html" class="pill-link">Awareness</a>
+            <a href="wellness.html" class="pill-link active" aria-current="page">Wellness</a>
+            <a href="journal.html" class="pill-link">Journal</a>
+            <a href="recovery.html" class="pill-link">Recovery</a>
+            <a href="emergency.html" class="pill-link pill-emergency">Get help</a>
+            <a href="emergency.html#raya" class="pill-link pill-raya">Raya</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Introduction -->
+        <section class="wellness-hero">
+            <div>
+                <span class="section-kicker">02 / Make room for yourself</span>
+                <h1>You deserve a moment that is just for you.</h1>
+                <p>
+                    You don't have to feel a certain way here. Pause,
+                    notice what's happening within you, and choose
+                    a small practice that feels comfortable today.
+                </p>
             </div>
 
-            <!-- Emotion Tracker -->
-            <div class="tool-box">
-                <h3>Emotion Tracker</h3>
-                <p style="color: var(--text-muted); font-size: 0.92rem;">How are you feeling right now?</p>
-                <div class="mood-buttons">
-                    <button class="mood-btn" onclick="logMood(this, 'Calm &amp; Balanced')">Calm</button>
-                    <button class="mood-btn" onclick="logMood(this, 'Hopeful')">Hopeful</button>
-                    <button class="mood-btn" onclick="logMood(this, 'Anxious')">Anxious</button>
-                    <button class="mood-btn" onclick="logMood(this, 'Overwhelmed')">Overwhelmed</button>
-                    <button class="mood-btn" onclick="logMood(this, 'Low / Tired')">Low</button>
-                </div>
-                <p id="moodStatus" class="status-msg"></p>
+            <div class="wellness-hero-note">
+                <span aria-hidden="true">✳</span>
+                <p>There is no right way to feel. Start where you are.</p>
             </div>
         </section>
 
-        <section>
-            <h2 class="section-heading">Coping Strategies &amp; Stress Management</h2>
-            <div class="cards-grid">
-                <div class="feature-card">
-                    <div>
-                        <h3>Understanding Emotions</h3>
-                        <p>Name the emotion to tame it. Separating feelings from facts reduces emotional overwhelm.</p>
-                    </div>
+        <!-- Interactive tools -->
+        <section class="wellness-tools-section">
+            <div class="section-intro">
+                <div>
+                    <span class="section-kicker">Your personal check-in</span>
+                    <h2>Pause &amp; notice<span>.</span></h2>
                 </div>
-                <div class="feature-card">
-                    <div>
-                        <h3>5-4-3-2-1 Grounding</h3>
-                        <p>Identify 5 things you see, 4 you feel, 3 you hear, 2 you smell, and 1 you taste to anchor yourself in the present.</p>
+                <p>
+                    Take a breath or put a name to what you're feeling.
+                    Both are good places to begin.
+                </p>
+            </div>
+
+            <div class="wellness-tools-grid">
+
+                <!-- Breathing exercise -->
+                <article class="wellness-tool breathing-tool">
+                    <div class="tool-heading">
+                        <span class="tool-label">01 / BREATHE</span>
+                        <span class="tool-icon" aria-hidden="true">◯</span>
                     </div>
-                </div>
-                <div class="feature-card">
-                    <div>
-                        <h3>Stress Management</h3>
-                        <p>Break big tasks into 15-minute blocks, step away from screens, and hydrate regularly.</p>
+
+                    <h3>A moment to breathe</h3>
+                    <p class="tool-description">
+                        Follow a gentle breathing rhythm for one minute.
+                        You can stop whenever you need to.
+                    </p>
+
+                    <div class="breathing-visual">
+                        <div class="breathe-circle" id="breatheCircle">
+                            <span id="breathPhase" aria-live="polite">Ready</span>
+                        </div>
                     </div>
-                </div>
+
+                    <p class="breath-timer" id="breathTimer">01:00</p>
+
+                    <div class="breath-controls">
+                        <button type="button" class="wellness-button"
+                                id="breathStart" onclick="startBreathing()">
+                            Begin breathing
+                        </button>
+
+                        <button type="button" class="wellness-stop"
+                                id="breathStop" onclick="stopBreathing()" disabled>
+                            Stop
+                        </button>
+                    </div>
+
+                    <p class="tool-footnote" id="breathStatus" aria-live="polite">
+                        Inhale gently, pause if comfortable, then exhale slowly.
+                    </p>
+                </article>
+
+                <!-- Mood check-in -->
+                <article class="wellness-tool mood-tool">
+                    <div class="tool-heading">
+                        <span class="tool-label">02 / CHECK IN</span>
+                        <span class="tool-icon" aria-hidden="true">♡</span>
+                    </div>
+
+                    <h3>How are you feeling?</h3>
+                    <p class="tool-description">
+                        There are no good or bad answers. Choose the
+                        feeling that comes closest to yours right now.
+                    </p>
+
+                    <div class="mood-options" role="group" aria-label="Choose your current mood">
+
+                        <button type="button" class="mood-option"
+                                data-mood="Calm" aria-pressed="false" onclick="logMood(this)">
+                            <span aria-hidden="true">☀</span> Calm
+                        </button>
+
+                        <button type="button" class="mood-option"
+                                data-mood="Hopeful" aria-pressed="false" onclick="logMood(this)">
+                            <span aria-hidden="true">✳</span> Hopeful
+                        </button>
+
+                        <button type="button" class="mood-option"
+                                data-mood="Anxious" aria-pressed="false" onclick="logMood(this)">
+                            <span aria-hidden="true">〰</span> Anxious
+                        </button>
+
+                        <button type="button" class="mood-option"
+                                data-mood="Overwhelmed" aria-pressed="false" onclick="logMood(this)">
+                            <span aria-hidden="true">☁</span> Overwhelmed
+                        </button>
+
+                        <button type="button" class="mood-option"
+                                data-mood="Low / Tired" aria-pressed="false" onclick="logMood(this)">
+                            <span aria-hidden="true">☾</span> Low / Tired
+                        </button>
+
+                    </div>
+
+                    <p class="mood-status" id="moodStatus" role="status" aria-live="polite">
+                        Your check-in will appear here.
+                    </p>
+
+                    <p class="tool-footnote">
+                        Your mood is not a measure of your worth.
+                    </p>
+                </article>
+
             </div>
         </section>
+
+        <!-- Coping strategies -->
+        <section class="coping-section">
+            <div class="section-intro">
+                <div>
+                    <span class="section-kicker">A few gentle practices</span>
+                    <h2>Find your steady ground<span>.</span></h2>
+                </div>
+                <p>
+                    Try one of these simple approaches when you need
+                    a little space to reset.
+                </p>
+            </div>
+
+            <div class="coping-grid">
+
+                <article class="coping-card coping-emotions">
+                    <span class="coping-number">01</span>
+                    <span class="coping-symbol" aria-hidden="true">♡</span>
+                    <h3>Give your feelings a name</h3>
+                    <p>
+                        Try describing what you're feeling without
+                        judging it. Naming an emotion can help you
+                        understand what might be happening.
+                    </p>
+                    <a href="journal.html" class="coping-link">
+                        Reflect in your journal <span>↗</span>
+                    </a>
+                </article>
+
+                <article class="coping-card coping-grounding">
+                    <span class="coping-number">02</span>
+                    <span class="coping-symbol" aria-hidden="true">✳</span>
+                    <h3>Try 5–4–3–2–1 grounding</h3>
+                    <p>
+                        Slowly notice 5 things you see, 4 you feel,
+                        3 you hear, 2 you smell and 1 you taste.
+                        Take your time with each step.
+                    </p>
+                    <span class="coping-caption">A sensory grounding practice</span>
+                </article>
+
+                <article class="coping-card coping-stress">
+                    <span class="coping-number">03</span>
+                    <span class="coping-symbol" aria-hidden="true">❋</span>
+                    <h3>Make space around stress</h3>
+                    <p>
+                        Choose one manageable task, take a short break
+                        or reach out to someone you trust. You don't
+                        need to solve everything at once.
+                    </p>
+                    <a href="awareness.html" class="coping-link">
+                        Learn more about yourself <span>↗</span>
+                    </a>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Closing reminder -->
+        <section class="wellness-reminder">
+            <span class="reminder-symbol" aria-hidden="true">❧</span>
+
+            <div>
+                <span class="section-kicker">Before you go</span>
+                <h2>Rest is allowed. Asking for help is allowed.</h2>
+                <p>
+                    These activities are optional self-care tools, not
+                    treatment. If you are struggling, a qualified
+                    professional can help you find the right support.
+                </p>
+            </div>
+
+            <a href="emergency.html" class="support-button">
+                Find support <span>→</span>
+            </a>
+        </section>
+
     </main>
 
-    <footer>
-        <p>Ashraya &mdash; Mindfulness and Mental Wellbeing | Need immediate support? Call Tele-MANAS at <strong>14416</strong></p>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <a href="dashboard.html" class="footer-brand">Ashraya.</a>
+        <p>A space to pause, understand and grow.</p>
+        <p class="footer-help">
+            Need someone to talk to?
+            <a href="tel:14416">Tele-MANAS: 14416</a>
+            <span>·</span>
+            <a href="tel:112">Emergency: 112</a>
+        </p>
+        <small>Take care of yourself, one day at a time.</small>
     </footer>
 
-    <script>
-        let breatheInterval;
-        function startBreathing() {
-            const circle = document.getElementById('breatheCircle');
-            clearInterval(breatheInterval);
-            let step = 0;
-            const cycle = () => {
-                if (step === 0) {
-                    circle.textContent = 'Inhale...';
-                    circle.classList.add('expand');
-                } else if (step === 1) {
-                    circle.textContent = 'Hold...';
-                } else {
-                    circle.textContent = 'Exhale...';
-                    circle.classList.remove('expand');
-                }
-                step = (step + 1) % 3;
-            };
-            cycle();
-            breatheInterval = setInterval(cycle, 4000);
-        }
+</div>
 
-        function logMood(btn, mood) {
-            document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
-            btn.classList.add('selected');
-            const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            localStorage.setItem('ashraya_last_mood', `${mood} (logged at ${time})`);
-            document.getElementById('moodStatus').textContent = `Saved: Feeling ${mood} at ${time}.`;
-        }
+<script>
+    // =====================================
+    // ONE-MINUTE BREATHING EXERCISE
+    // =====================================
 
-        window.onload = () => {
-            const saved = localStorage.getItem('ashraya_last_mood');
-            if (saved) document.getElementById('moodStatus').textContent = `Last check-in: ${saved}`;
+    const breatheCircle = document.getElementById("breatheCircle");
+    const breathPhase = document.getElementById("breathPhase");
+    const breathTimer = document.getElementById("breathTimer");
+    const breathStart = document.getElementById("breathStart");
+    const breathStop = document.getElementById("breathStop");
+    const breathStatus = document.getElementById("breathStatus");
+
+    let phaseTimeout = null;
+    let timerInterval = null;
+    let breathEndTime = null;
+    let breathingActive = false;
+    let breathStep = 0;
+
+    const breathPhases = [
+        { name: "Inhale", duration: 4000, expanded: true },
+        { name: "Hold", duration: 4000, expanded: true },
+        { name: "Exhale", duration: 4000, expanded: false }
+    ];
+
+    function updateBreathTimer() {
+        if (!breathingActive) return;
+
+        const remaining = Math.max(0, breathEndTime - Date.now());
+        const seconds = Math.ceil(remaining / 1000);
+
+        const minutes = Math.floor(seconds / 60);
+        const remainder = seconds % 60;
+
+        breathTimer.textContent =
+            `${String(minutes).padStart(2, "0")}:${String(remainder).padStart(2, "0")}`;
+
+        if (remaining <= 0) {
+            stopBreathing(true);
+        }
+    }
+
+    function runBreathPhase() {
+        if (!breathingActive) return;
+
+        const phase = breathPhases[breathStep];
+
+        breathPhase.textContent = phase.name;
+        breatheCircle.classList.toggle("expand", phase.expanded);
+
+        breathStep = (breathStep + 1) % breathPhases.length;
+
+        phaseTimeout = setTimeout(runBreathPhase, phase.duration);
+    }
+
+    function startBreathing() {
+        if (breathingActive) return;
+
+        breathingActive = true;
+        breathStep = 0;
+        breathEndTime = Date.now() + 60000;
+
+        breathStart.disabled = true;
+        breathStop.disabled = false;
+
+        breathStatus.textContent =
+            "Follow the circle gently. You can stop at any time.";
+
+        runBreathPhase();
+        updateBreathTimer();
+
+        timerInterval = setInterval(updateBreathTimer, 250);
+    }
+
+    function stopBreathing(completed = false) {
+        breathingActive = false;
+
+        clearTimeout(phaseTimeout);
+        clearInterval(timerInterval);
+
+        phaseTimeout = null;
+        timerInterval = null;
+
+        breatheCircle.classList.remove("expand");
+        breathPhase.textContent = completed ? "Complete" : "Ready";
+
+        breathStart.disabled = false;
+        breathStop.disabled = true;
+
+        if (completed) {
+            breathTimer.textContent = "00:00";
+            breathStatus.textContent =
+                "Your minute is complete. Take your time before moving on.";
+        } else {
+            breathTimer.textContent = "01:00";
+            breathStatus.textContent =
+                "Pause whenever you need. You can return to this exercise later.";
+        }
+    }
+
+    // =====================================
+    // MOOD CHECK-IN
+    // =====================================
+
+    const moodStatus = document.getElementById("moodStatus");
+    const moodButtons = document.querySelectorAll(".mood-option");
+
+    function logMood(button) {
+        const mood = button.dataset.mood;
+        const now = new Date();
+
+        const time = now.toLocaleString([], {
+            dateStyle: "medium",
+            timeStyle: "short"
+        });
+
+        const moodData = {
+            mood: mood,
+            timestamp: now.toISOString(),
+            displayTime: time
         };
-    </script>
+
+        try {
+            localStorage.setItem(
+                "ashraya_last_mood",
+                JSON.stringify(moodData)
+            );
+
+            moodButtons.forEach(btn => {
+                const selected = btn === button;
+
+                btn.classList.toggle("selected", selected);
+                btn.setAttribute("aria-pressed", String(selected));
+            });
+
+            moodStatus.textContent = `Check-in saved: ${mood} · ${time}`;
+
+        } catch (error) {
+            moodStatus.textContent =
+                "Your check-in couldn't be saved in this browser.";
+        }
+    }
+
+    // =====================================
+    // RESTORE PREVIOUS MOOD
+    // =====================================
+
+    function restoreMood() {
+        try {
+            const saved = localStorage.getItem("ashraya_last_mood");
+
+            if (!saved) return;
+
+            let moodData;
+
+            try {
+                moodData = JSON.parse(saved);
+            } catch {
+                moodStatus.textContent = `Previous check-in: ${saved}`;
+                return;
+            }
+
+            if (!moodData || !moodData.mood) return;
+
+            moodButtons.forEach(button => {
+                const selected = button.dataset.mood === moodData.mood;
+
+                button.classList.toggle("selected", selected);
+                button.setAttribute("aria-pressed", String(selected));
+            });
+
+            moodStatus.textContent =
+                `Last check-in: ${moodData.mood} · ${moodData.displayTime || ""}`;
+
+        } catch (error) {
+            moodStatus.textContent =
+                "Your previous check-in is currently unavailable.";
+        }
+    }
+
+    restoreMood();
+</script>
+
 </body>
 </html>

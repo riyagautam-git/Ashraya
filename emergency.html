@@ -1,180 +1,714 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ashraya | Help &amp; Emergency</title>
+    <meta name="theme-color" content="#263E33">
+    <title>Ashraya | Help & Emergency</title>
+
     <link rel="stylesheet" href="assets/css/style.css">
+
     <style>
-        .helpline-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 1.25rem;
-            margin-bottom: 3rem;
+        :root {
+            --emergency-forest: #263E33;
+            --emergency-ivory: #F5F1E8;
+            --emergency-sage: #C9DCCB;
+            --emergency-clay: #D9A58B;
+            --emergency-muted: #777D74;
+            --emergency-line: #E4E0D6;
+            --emergency-white: #FFFDF8;
         }
-        .helpline-card {
-            background: var(--white);
-            padding: 1.6rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            border-left: 6px solid #dc2626;
+
+        /* Page layout */
+
+        .emergency-page {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
         }
-        .helpline-card h3 {
-            color: var(--navy);
-            font-size: 1.1rem;
-            margin-bottom: 0.4rem;
+
+        /* Introduction */
+
+        .emergency-hero {
+            position: relative;
+            overflow: hidden;
+            background: var(--emergency-forest);
+            color: var(--emergency-ivory);
+            border-radius: 20px;
+            padding: 1.8rem 2.2rem;
+            margin: 1rem 0 2.5rem;
         }
-        .helpline-number {
+
+        .emergency-hero::after {
+            content: "";
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            right: 5%;
+            top: -75px;
+            border: 1px solid rgba(245, 241, 232, 0.16);
+            border-radius: 48% 52% 65% 35%;
+            transform: rotate(-25deg);
+            pointer-events: none;
+        }
+
+        .emergency-eyebrow {
             display: inline-block;
-            margin-top: 0.6rem;
-            font-size: 1.4rem;
+            color: var(--emergency-sage);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.75rem;
             font-weight: 700;
-            color: #dc2626;
+            margin-bottom: 0.7rem;
+        }
+
+        .emergency-hero h1 {
+            position: relative;
+            z-index: 1;
+            color: var(--emergency-ivory);
+            font-family: Georgia, serif;
+            font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 0.6rem;
+        }
+
+        .emergency-hero p {
+            position: relative;
+            z-index: 1;
+            max-width: 680px;
+            color: rgba(245, 241, 232, 0.85);
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-back {
+            position: relative;
+            z-index: 1;
+            display: inline-block;
+            margin-top: 0.8rem;
+            color: var(--emergency-sage);
+            font-weight: 600;
             text-decoration: none;
         }
-        .raya-box {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            border-top: 6px solid var(--navy);
+
+        .emergency-back:hover {
+            text-decoration: underline;
         }
+
+        /* Section headings */
+
+        .emergency-section-heading {
+            color: var(--emergency-forest);
+            font-family: Georgia, serif;
+            font-size: 2rem;
+            font-weight: 400;
+            margin: 2.5rem 0 0.5rem;
+        }
+
+        .emergency-section-intro {
+            color: var(--emergency-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Helpline cards */
+
+        .helpline-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        .helpline-card {
+            position: relative;
+            background: var(--emergency-white);
+            padding: 1.6rem;
+            border-radius: 18px;
+            border: 1px solid var(--emergency-line);
+            border-left: 4px solid var(--emergency-sage);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .helpline-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(38, 62, 51, 0.08);
+        }
+
+        .helpline-card.urgent {
+            border-left-color: #C96B61;
+        }
+
+        .helpline-card h3 {
+            color: var(--emergency-forest);
+            font-family: Georgia, serif;
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: 0.4rem;
+        }
+
+        .helpline-card p {
+            color: var(--emergency-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .helpline-number {
+            display: inline-block;
+            margin-top: 0.9rem;
+            color: var(--emergency-forest);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+        }
+
+        .helpline-card.urgent .helpline-number {
+            color: #B94D45;
+        }
+
+        .helpline-number:hover {
+            text-decoration: underline;
+        }
+
+        .call-hint {
+            display: block;
+            margin-top: 0.3rem;
+            color: var(--emergency-muted);
+            font-size: 0.78rem;
+        }
+
+        /* Raya chat */
+
+        .raya-box {
+            background: var(--emergency-white);
+            border: 1px solid var(--emergency-line);
+            border-radius: 22px;
+            padding: 2rem;
+            box-shadow: 0 8px 25px rgba(38, 62, 51, 0.05);
+            scroll-margin-top: 2rem;
+        }
+
+        .raya-heading {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .raya-avatar {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: var(--emergency-sage);
+            font-size: 1.5rem;
+        }
+
+        .raya-heading h2 {
+            color: var(--emergency-forest);
+            font-family: Georgia, serif;
+            font-size: 1.7rem;
+            font-weight: 400;
+        }
+
+        .raya-subtitle {
+            color: var(--emergency-muted);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
         .chat-window {
-            background: #f8fafc;
-            border: 1px solid var(--light-blue);
-            border-radius: 12px;
-            height: 240px;
+            background: #F5F5EF;
+            border: 1px solid var(--emergency-line);
+            border-radius: 16px;
+            min-height: 230px;
+            max-height: 320px;
             overflow-y: auto;
-            padding: 1rem;
+            padding: 1.2rem;
             margin: 1rem 0;
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
+            gap: 0.8rem;
         }
+
+        .msg-raya,
+        .msg-user {
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            max-width: 82%;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
         .msg-raya {
-            background: var(--light-blue);
-            color: var(--navy);
-            padding: 0.75rem 1rem;
-            border-radius: 12px 12px 12px 2px;
-            max-width: 80%;
+            background: #E5EDE3;
+            color: var(--emergency-forest);
+            border-radius: 14px 14px 14px 3px;
             align-self: flex-start;
         }
+
         .msg-user {
-            background: var(--navy);
-            color: var(--white);
-            padding: 0.75rem 1rem;
-            border-radius: 12px 12px 2px 12px;
-            max-width: 80%;
+            background: var(--emergency-forest);
+            color: white;
+            border-radius: 14px 14px 3px 14px;
             align-self: flex-end;
         }
+
         .chat-input-row {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.8rem;
         }
+
         .chat-input-row input {
             flex: 1;
-            padding: 0.8rem 1rem;
-            border: 2px solid var(--light-blue);
+            min-width: 0;
+            padding: 0.85rem 1.1rem;
+            border: 1px solid var(--emergency-line);
             border-radius: 50px;
             outline: none;
+            background: var(--emergency-white);
+            color: var(--emergency-forest);
+            font: inherit;
+        }
+
+        .chat-input-row input:focus {
+            border-color: var(--emergency-forest);
+        }
+
+        .chat-send {
+            border: none;
+            border-radius: 50px;
+            background: var(--emergency-forest);
+            color: white;
+            padding: 0.85rem 1.5rem;
+            font: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .chat-send:hover {
+            background: #385846;
+        }
+
+        .raya-disclaimer {
+            margin-top: 1rem;
+            color: var(--emergency-muted);
+            font-size: 0.82rem;
+            line-height: 1.6;
+        }
+
+        /* Emergency note */
+
+        .emergency-note {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            margin-top: 2rem;
+            padding: 1.3rem 1.5rem;
+            border-radius: 16px;
+            background: #F0E5DA;
+            color: #59483E;
+            line-height: 1.7;
+        }
+
+        .emergency-note strong {
+            color: var(--emergency-forest);
+        }
+
+        .emergency-note-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: var(--emergency-muted);
+            line-height: 1.7;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 3px solid var(--emergency-clay);
+            outline-offset: 3px;
+        }
+
+        /* Dark theme */
+
+        body.dark-theme .emergency-hero {
+            background: #1D3028;
+        }
+
+        body.dark-theme .emergency-section-heading {
+            color: var(--emergency-ivory);
+        }
+
+        body.dark-theme .emergency-section-intro {
+            color: #B8C2B8;
+        }
+
+        body.dark-theme .helpline-card,
+        body.dark-theme .raya-box {
+            background: #263B31;
+            border-color: #405548;
+        }
+
+        body.dark-theme .helpline-card h3,
+        body.dark-theme .raya-heading h2 {
+            color: var(--emergency-ivory);
+        }
+
+        body.dark-theme .helpline-card p,
+        body.dark-theme .call-hint,
+        body.dark-theme .raya-subtitle,
+        body.dark-theme .raya-disclaimer {
+            color: #B8C2B8;
+        }
+
+        body.dark-theme .helpline-number {
+            color: var(--emergency-sage);
+        }
+
+        body.dark-theme .helpline-card.urgent .helpline-number {
+            color: #F0A49A;
+        }
+
+        body.dark-theme .raya-avatar {
+            background: #405548;
+        }
+
+        body.dark-theme .chat-window {
+            background: #1B2B23;
+            border-color: #405548;
+        }
+
+        body.dark-theme .msg-raya {
+            background: #405548;
+            color: var(--emergency-ivory);
+        }
+
+        body.dark-theme .chat-input-row input {
+            background: #1B2B23;
+            border-color: #405548;
+            color: var(--emergency-ivory);
+        }
+
+        body.dark-theme .emergency-note {
+            background: #40372F;
+            color: #E7D9CB;
+        }
+
+        body.dark-theme .emergency-note strong {
+            color: var(--emergency-ivory);
+        }
+
+        body.dark-theme footer {
+            color: #B8C2B8;
+        }
+
+        /* Responsive */
+
+        @media (max-width: 700px) {
+            .emergency-page {
+                padding: 1rem 1rem 3rem;
+            }
+
+            .emergency-hero {
+                padding: 1.5rem;
+            }
+
+            .helpline-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .raya-box {
+                padding: 1.3rem;
+            }
+
+            .chat-input-row {
+                flex-direction: column;
+            }
+
+            .chat-send {
+                width: 100%;
+            }
+
+            .msg-raya,
+            .msg-user {
+                max-width: 92%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
+
 <body>
+    <div class="app-container">
 
-    <nav class="navbar">
-        <a href="dashboard.html" class="logo">Ashraya</a>
-        <ul class="nav-links">
-            <li><a href="awareness.html">Mental Health Awareness</a></li>
-            <li><a href="wellness.html">Emotional Wellness</a></li>
-            <li><a href="journal.html">Wellbeing Journal</a></li>
-            <li><a href="recovery.html">Addiction Recovery</a></li>
-            <li><a href="emergency.html" class="nav-emergency">Help &amp; Emergency</a></li>
-            <li><a href="#raya" class="nav-raya">Raya.AI</a></li>
-        </ul>
-    </nav>
+        <!-- Header -->
+        <header class="top-header-row">
+            <div class="brand-group">
+                <a href="dashboard.html" class="logo" aria-label="Ashraya home">
+                    Ashraya<span class="logo-dot">.</span>
+                </a>
 
-    <main class="container">
-        <section class="hero-card" style="border-left-color: #dc2626;">
-            <span class="hero-badge" style="background: #fee2e2; color: #b91c1c;">24/7 Support</span>
-            <h1>Help &amp; Emergency</h1>
-            <p class="hero-subtitle">Healing takes time, and asking for help is a courageous step.</p>
-            <p class="hero-description">You never have to carry heavy moments alone. Reach out to verified national helplines below or talk with Raya, your virtual companion.</p>
-        </section>
+                <button
+                    type="button"
+                    class="theme-toggle"
+                    id="themeToggle"
+                    aria-label="Switch to dark theme"
+                    title="Switch to dark theme"
+                >
+                    <svg class="sun-icon" viewBox="0 0 24 24"
+                         width="21" height="21" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2"></path>
+                        <path d="m4.93 4.93 1.42 1.42 M17.65 17.65l1.42 1.42"></path>
+                        <path d="m6.35 17.65-1.42 1.42 M19.07 4.93l-1.42 1.42"></path>
+                    </svg>
 
-        <section>
-            <h2 class="section-heading">Contacts You May Need</h2>
-            <div class="helpline-grid">
-                <div class="helpline-card">
-                    <h3>Need Immediate Mental Support?</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Tele-MANAS (24/7 Mental Health Support)</p>
-                    <a href="tel:14416" class="helpline-number">14416</a>
-                </div>
-                <div class="helpline-card">
-                    <h3>National Emergency</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Immediate Police, Ambulance &amp; Crisis Response</p>
-                    <a href="tel:112" class="helpline-number">112</a>
-                </div>
-                <div class="helpline-card">
-                    <h3>National De-addiction Helpline</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">Confidential Addiction &amp; Recovery Support</p>
-                    <a href="tel:1800110031" class="helpline-number">1800-11-0031</a>
-                </div>
-                <div class="helpline-card">
-                    <h3>Child Helpline</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">24/7 Care &amp; Protection for Children</p>
-                    <a href="tel:1098" class="helpline-number">1098</a>
-                </div>
-                <div class="helpline-card">
-                    <h3>Women Helpline</h3>
-                    <p style="color: var(--text-muted); font-size: 0.9rem;">24/7 Support &amp; Safety Assistance</p>
-                    <a href="tel:181" class="helpline-number">181</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Talk to Raya -->
-        <section id="raya" class="raya-box">
-            <h2 style="color: var(--navy);">Talk to Raya (Your Virtual Counsellor)</h2>
-            <p style="color: var(--text-muted); font-size: 0.92rem;">Share what's on your mind in a calm, judgment-free space.</p>
-            
-            <div id="chatWindow" class="chat-window">
-                <div class="msg-raya">Hi, I'm Raya. I'm here to listen. How are you feeling right now?</div>
+                    <svg class="moon-icon" viewBox="0 0 24 24"
+                         width="21" height="21" fill="none"
+                         stroke="currentColor" stroke-width="2"
+                         stroke-linecap="round" stroke-linejoin="round"
+                         hidden>
+                        <path d="M20.9 13A9 9 0 0 1 11 3.1
+                                 9 9 0 1 0 20.9 13Z"></path>
+                    </svg>
+                </button>
             </div>
 
-            <div class="chat-input-row">
-                <input type="text" id="chatInput" placeholder="Type a message to Raya..." onkeypress="if(event.key==='Enter') sendMessage()">
-                <button class="btn-primary" onclick="sendMessage()">Send</button>
-            </div>
-        </section>
-    </main>
+            <nav class="top-actions" aria-label="Main navigation">
+                <a href="awareness.html" class="pill-link">Awareness</a>
+                <a href="wellness.html" class="pill-link">Wellness</a>
+                <a href="journal.html" class="pill-link">Journal</a>
+                <a href="recovery.html" class="pill-link">Recovery</a>
+                <a href="emergency.html" class="pill-link pill-emergency" aria-current="page">Emergency</a>
+                <a href="emergency.html#raya" class="pill-link pill-raya">Raya.AI</a>
+            </nav>
+        </header>
 
-    <footer>
-        <p>Ashraya &mdash; If you are in immediate danger, please call <strong>112</strong> or Tele-MANAS at <strong>14416</strong> right away.</p>
-    </footer>
+        <main class="emergency-page">
 
+            <!-- Introduction -->
+            <section class="emergency-hero">
+                <span class="emergency-eyebrow">Support is here</span>
+
+                <h1>Help & Emergency</h1>
+
+                <p>
+                    Healing takes time, and asking for help is a courageous step.
+                    You never have to carry difficult moments alone.
+                </p>
+
+                <p>
+                    Find support through the helplines below or share
+                    what's on your mind with Raya.
+                </p>
+
+                <a href="dashboard.html" class="emergency-back">
+                    &larr; Back to Dashboard
+                </a>
+            </section>
+
+            <!-- Helplines -->
+            <section>
+                <h2 class="emergency-section-heading">
+                    Contacts you may need
+                </h2>
+
+                <p class="emergency-section-intro">
+                    Keep these important support numbers close.
+                    Tap a number to call directly from your device.
+                </p>
+
+                <div class="helpline-grid">
+
+                    <article class="helpline-card">
+                        <h3>Tele-MANAS Support</h3>
+                        <p>24/7 mental health helpline</p>
+                        <a href="tel:14416" class="helpline-number">14416</a>
+                        <span class="call-hint">Tap to call</span>
+                    </article>
+
+                    <article class="helpline-card urgent">
+                        <h3>National Emergency</h3>
+                        <p>Police, ambulance and emergency assistance</p>
+                        <a href="tel:112" class="helpline-number">112</a>
+                        <span class="call-hint">Tap to call</span>
+                    </article>
+
+                    <article class="helpline-card">
+                        <h3>De-addiction Helpline</h3>
+                        <p>Recovery and de-addiction support</p>
+                        <a href="tel:1800110031" class="helpline-number">1800-11-0031</a>
+                        <span class="call-hint">Tap to call</span>
+                    </article>
+
+                    <article class="helpline-card">
+                        <h3>Women Helpline</h3>
+                        <p>Safety and assistance</p>
+                        <a href="tel:181" class="helpline-number">181</a>
+                        <span class="call-hint">Tap to call</span>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- Talk to Raya -->
+            <section id="raya" class="raya-box">
+
+                <div class="raya-heading">
+                    <div class="raya-avatar" aria-hidden="true">🌿</div>
+                    <div>
+                        <h2>Talk to Raya</h2>
+                        <p class="raya-subtitle">Your virtual companion</p>
+                    </div>
+                </div>
+
+                <p class="raya-subtitle">
+                    Share what's on your mind in a calm,
+                    judgment-free space.
+                </p>
+
+                <div id="chatWindow" class="chat-window"
+                     role="log" aria-live="polite" aria-label="Chat with Raya">
+                    <div class="msg-raya">
+                        Hi, I'm Raya. I'm here to listen.
+                        How are you feeling right now?
+                    </div>
+                </div>
+
+                <div class="chat-input-row">
+                    <input
+                        type="text"
+                        id="chatInput"
+                        placeholder="Type a message to Raya..."
+                        aria-label="Message to Raya"
+                    >
+
+                    <button class="chat-send" id="sendButton" type="button">
+                        Send
+                    </button>
+                </div>
+
+                <p class="raya-disclaimer">
+                    Raya is a virtual companion, not a trained counsellor
+                    or emergency service. If you are in immediate danger,
+                    call 112 or seek urgent in-person help.
+                </p>
+
+            </section>
+
+            <!-- Emergency reminder -->
+            <section class="emergency-note">
+                <span class="emergency-note-icon" aria-hidden="true">♡</span>
+                <p>
+                    <strong>You deserve support.</strong>
+                    If you or someone else is in immediate danger,
+                    call <strong>112</strong> or go to the nearest
+                    emergency department. For mental health support,
+                    you can also contact Tele-MANAS at <strong>14416</strong>.
+                </p>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>
+                Ashraya — Every step deserves compassion.
+                <br>
+                If you are in immediate danger, call <strong>112</strong>.
+            </p>
+        </footer>
+
+    </div>
+
+    <!-- Theme script -->
+    <script src="assets/js/theme.js"></script>
+
+    <!-- Raya chat -->
     <script>
+        const input = document.getElementById("chatInput");
+        const chatWindow = document.getElementById("chatWindow");
+        const sendButton = document.getElementById("sendButton");
+
+        function addMessage(message, className) {
+            const messageElement = document.createElement("div");
+            messageElement.className = className;
+            messageElement.textContent = message;
+
+            chatWindow.appendChild(messageElement);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
         function sendMessage() {
-            const input = document.getElementById('chatInput');
             const text = input.value.trim();
+
             if (!text) return;
 
-            const win = document.getElementById('chatWindow');
-            win.innerHTML += `<div class="msg-user">${text}</div>`;
-            input.value = '';
+            addMessage(text, "msg-user");
+            input.value = "";
+
+            sendButton.disabled = true;
 
             setTimeout(() => {
-                let reply = "Thank you for sharing that with me. Take a slow, deep breath—you're doing the best you can right now. Would you like to try a grounding exercise or write this down in your journal?";
+                let reply =
+                    "Thank you for sharing that with me. Take a slow, comfortable breath. You deserve patience and kindness.";
+
                 const lower = text.toLowerCase();
-                if (lower.includes('anxious') || lower.includes('stress') || lower.includes('panic')) {
-                    reply = "It sounds like things feel really heavy right now. Let's pause together—try inhaling for 4 seconds, holding for 4, and exhaling for 4. You can also visit the Emotional Wellness tab for a guided breathing timer.";
-                } else if (lower.includes('help') || lower.includes('hurt') || lower.includes('suicide')) {
-                    reply = "Please know you don't have to go through this alone. Reach out right now to Tele-MANAS at 14416 or Emergency services at 112—someone is ready to support you 24/7.";
+
+                if (
+                    lower.includes("anxious") ||
+                    lower.includes("stress") ||
+                    lower.includes("panic")
+                ) {
+                    reply =
+                        "It sounds like things feel really heavy right now. If it feels comfortable, try breathing in gently and breathing out slowly. You don't have to rush.";
+                } else if (
+                    lower.includes("help") ||
+                    lower.includes("hurt") ||
+                    lower.includes("suicide")
+                ) {
+                    reply =
+                        "I'm sorry things feel difficult right now. Please reach out to someone you trust or contact Tele-MANAS at 14416. If you may be in immediate danger, call 112 or go to the nearest emergency department.";
                 }
-                win.innerHTML += `<div class="msg-raya">${reply}</div>`;
-                win.scrollTop = win.scrollHeight;
+
+                addMessage(reply, "msg-raya");
+                sendButton.disabled = false;
+                input.focus();
             }, 500);
         }
+
+        sendButton.addEventListener("click", sendMessage);
+
+        input.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        });
     </script>
+
 </body>
 </html>

@@ -1,77 +1,282 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore approachable mental health information, emotional awareness and everyday self-care with Ashraya.">
+    <meta name="theme-color" content="#f5f1e8">
     <title>Ashraya | Mental Health Awareness</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/theme.js"></script>
 </head>
+
 <body>
+<div class="app-container">
 
-    <!-- Top Navigation Bar -->
-    <nav class="navbar">
-        <a href="dashboard.html" class="logo">Ashraya</a>
-        <ul class="nav-links">
-            <li><a href="awareness.html" class="active">Mental Health Awareness</a></li>
-            <li><a href="wellness.html">Emotional Wellness</a></li>
-            <li><a href="journal.html">Wellbeing Journal</a></li>
-            <li><a href="recovery.html">Addiction Recovery</a></li>
-            <li><a href="emergency.html" class="nav-emergency">Help &amp; Emergency</a></li>
-            <li><a href="emergency.html#raya" class="nav-raya">Raya.AI</a></li>
-        </ul>
-    </nav>
+    <!-- Header -->
+    <header class="top-header-row">
+<div class="brand-group">
+    <a href="dashboard.html" class="logo" aria-label="Ashraya home">
+        Ashraya<span class="logo-dot">.</span>
+    </a>
 
-    <!-- Main Content -->
-    <main class="container">
-        
-        <!-- Hero Section -->
-        <section class="hero-card">
-            <span class="hero-badge">Mental Health Awareness</span>
-            <h1>The first step of everything in your life begins with you.</h1>
-            <p class="hero-subtitle">Get to know yourself and build inner awareness.</p>
-            <p class="hero-description">
-                True wellbeing starts with self-understanding. Recognizing your patterns, acknowledging your feelings without judgment, 
-                and learning how your mind responds to stress are powerful steps toward emotional freedom.
-            </p>
+    <button
+        type="button"
+        class="theme-toggle"
+        id="themeToggle"
+        aria-label="Switch to dark theme"
+        title="Switch to dark theme"
+    >
+        <svg class="sun-icon" viewBox="0 0 24 24"
+             width="21" height="21" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2"></path>
+            <path d="m4.93 4.93 1.42 1.42 M17.65 17.65l1.42 1.42"></path>
+            <path d="m6.35 17.65-1.42 1.42 M19.07 4.93l-1.42 1.42"></path>
+        </svg>
+
+        <svg class="moon-icon" viewBox="0 0 24 24"
+             width="21" height="21" fill="none"
+             stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round"
+             hidden>
+            <path d="M20.9 13A9 9 0 0 1 11 3.1
+                     9 9 0 1 0 20.9 13Z"></path>
+        </svg>
+    </button>
+</div>
+
+        <nav class="top-actions" aria-label="Main navigation">
+            <a href="dashboard.html" class="pill-link">Home</a>
+            <a href="awareness.html" class="pill-link active" aria-current="page">Awareness</a>
+            <a href="wellness.html" class="pill-link">Wellness</a>
+            <a href="journal.html" class="pill-link">Journal</a>
+            <a href="recovery.html" class="pill-link">Recovery</a>
+            <a href="emergency.html" class="pill-link pill-emergency">Get help</a>
+            <a href="emergency.html#raya" class="pill-link pill-raya">Raya</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Editorial introduction -->
+        <section class="awareness-hero">
+            <div class="awareness-hero-copy">
+                <span class="section-kicker">01 / Understand yourself</span>
+                <h1>Getting to know your mind is a journey worth taking.</h1>
+                <p>
+                    Mental wellbeing doesn't mean feeling happy all the time.
+                    It means learning to understand your emotions, recognise
+                    when you need support, and treat yourself with kindness
+                    along the way.
+                </p>
+                <a href="#learning" class="btn-primary">
+                    Start exploring <span aria-hidden="true">↓</span>
+                </a>
+            </div>
+
+            <div class="awareness-art" role="img"
+                 aria-label="Abstract organic shapes representing growth and self-understanding">
+                <div class="awareness-art-circle"></div>
+                <div class="awareness-leaf leaf-a"></div>
+                <div class="awareness-leaf leaf-b"></div>
+                <div class="awareness-leaf leaf-c"></div>
+                <span class="awareness-art-quote">
+                    Understanding<br>begins within.
+                </span>
+            </div>
         </section>
 
-        <!-- Articles / Guides Grid -->
-        <section>
-            <h2 class="section-heading">Read &amp; Learn</h2>
-            <div class="cards-grid">
-                
-                <div class="feature-card" style="border-top-color: var(--primary-blue);">
-                    <div>
-                        <h3>Understanding Your Mind</h3>
-                        <p>Learn how thoughts influence emotions and physical health. Spot early signs of burnout and mental fatigue.</p>
-                    </div>
-                    <span class="card-link">Read Guide &rarr;</span>
+        <!-- Learning topics -->
+        <section class="awareness-learning" id="learning">
+            <div class="section-intro">
+                <div>
+                    <span class="section-kicker">A place to begin</span>
+                    <h2>Read, reflect, understand<span>.</span></h2>
                 </div>
+                <p>
+                    Explore these topics at your own pace.
+                    You can start wherever feels right.
+                </p>
+            </div>
 
-                <div class="feature-card" style="border-top-color: var(--primary-blue);">
-                    <div>
-                        <h3>Breaking the Stigma</h3>
-                        <p>Mental health is just like physical health. Discover why open conversations save lives and change communities.</p>
-                    </div>
-                    <span class="card-link">Read Guide &rarr;</span>
-                </div>
+            <div class="awareness-topic-grid">
 
-                <div class="feature-card" style="border-top-color: var(--primary-blue);">
-                    <div>
-                        <h3>Self-Help Activities</h3>
-                        <p>Simple, actionable daily habits to reset your nervous system and ground yourself when things get chaotic.</p>
+                <article class="awareness-topic topic-mind" id="understanding">
+                    <div class="topic-meta">
+                        <span>01 — SELF-AWARENESS</span>
+                        <span class="topic-icon" aria-hidden="true">◉</span>
                     </div>
-                    <span class="card-link">Explore Activities &rarr;</span>
-                </div>
+                    <h3>Understanding your mind</h3>
+                    <p>
+                        Our thoughts, emotions and physical experiences
+                        are connected. Getting curious about them can
+                        help us understand what we need.
+                    </p>
+                    <a href="#mind-guide" class="topic-link">
+                        Explore this topic <span aria-hidden="true">↗</span>
+                    </a>
+                </article>
+
+                <article class="awareness-topic topic-stigma" id="stigma">
+                    <div class="topic-meta">
+                        <span>02 — OPEN CONVERSATIONS</span>
+                        <span class="topic-icon" aria-hidden="true">♡</span>
+                    </div>
+                    <h3>Breaking the stigma</h3>
+                    <p>
+                        Mental health deserves the same care and
+                        understanding as physical health. Honest,
+                        respectful conversations can make it easier
+                        to seek support.
+                    </p>
+                    <a href="#stigma-guide" class="topic-link">
+                        Explore this topic <span aria-hidden="true">↗</span>
+                    </a>
+                </article>
+
+                <article class="awareness-topic topic-selfcare" id="selfcare">
+                    <div class="topic-meta">
+                        <span>03 — EVERYDAY CARE</span>
+                        <span class="topic-icon" aria-hidden="true">✳</span>
+                    </div>
+                    <h3>Small self-care practices</h3>
+                    <p>
+                        Simple activities can help you pause, reconnect
+                        with the present and make space for your feelings.
+                        There is no perfect routine.
+                    </p>
+                    <a href="#selfcare-guide" class="topic-link">
+                        Explore this topic <span aria-hidden="true">↗</span>
+                    </a>
+                </article>
 
             </div>
         </section>
 
+        <!-- Reading guide 1 -->
+        <section class="reading-section" id="mind-guide">
+            <div class="reading-number">01</div>
+            <div class="reading-content">
+                <span class="section-kicker">Self-awareness</span>
+                <h2>Understanding your mind</h2>
+                <p>
+                    Sometimes we experience an emotion before we understand
+                    what caused it. Paying attention to our thoughts,
+                    feelings and physical responses can help us notice
+                    patterns without judging ourselves.
+                </p>
+
+                <h3>Try asking yourself:</h3>
+                <ul class="reflection-list">
+                    <li>What emotion am I experiencing right now?</li>
+                    <li>Has something happened that might have affected my mood?</li>
+                    <li>What would help me feel supported in this moment?</li>
+                </ul>
+
+                <p class="reading-note">
+                    You don't need to find an answer to everything.
+                    Sometimes simply noticing what you feel is a meaningful
+                    first step.
+                </p>
+            </div>
+        </section>
+
+        <!-- Reading guide 2 -->
+        <section class="reading-section reading-alt" id="stigma-guide">
+            <div class="reading-number">02</div>
+            <div class="reading-content">
+                <span class="section-kicker">Open conversations</span>
+                <h2>Breaking the stigma</h2>
+                <p>
+                    Misunderstandings about mental health can make people
+                    feel isolated or ashamed. Mental health challenges are
+                    not a personal failure, and asking for help is not a
+                    sign of weakness.
+                </p>
+
+                <h3>How can we make a difference?</h3>
+                <ul class="reflection-list">
+                    <li>Listen without judging or immediately offering advice.</li>
+                    <li>Avoid labels and assumptions about someone's experience.</li>
+                    <li>Respect privacy and personal boundaries.</li>
+                    <li>Encourage professional support when someone needs it.</li>
+                </ul>
+
+                <p class="reading-note">
+                    A little empathy can make a conversation feel safer.
+                    We don't always need the perfect words; sometimes
+                    listening is enough.
+                </p>
+            </div>
+        </section>
+
+        <!-- Reading guide 3 -->
+        <section class="reading-section" id="selfcare-guide">
+            <div class="reading-number">03</div>
+            <div class="reading-content">
+                <span class="section-kicker">Everyday care</span>
+                <h2>Small ways to care for yourself</h2>
+                <p>
+                    Self-care isn't about being productive or following
+                    a perfect routine. It can be as simple as recognising
+                    that you need rest, connection or a little time away
+                    from a stressful situation.
+                </p>
+
+                <h3>Some gentle ideas to try:</h3>
+                <ul class="reflection-list">
+                    <li>Step outside for a few minutes and notice your surroundings.</li>
+                    <li>Write down a thought you've been carrying.</li>
+                    <li>Reach out to someone you trust.</li>
+                    <li>Take a break and do one thing at a comfortable pace.</li>
+                    <li>Try a grounding exercise if you feel overwhelmed.</li>
+                </ul>
+
+                <p class="reading-note">
+                    Choose what feels manageable today. It is okay if
+                    your version of self-care looks different tomorrow.
+                </p>
+
+                <a href="wellness.html" class="btn-primary">
+                    Explore wellness tools <span aria-hidden="true">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Support note -->
+        <section class="awareness-support">
+            <div>
+                <span class="section-kicker">A gentle reminder</span>
+                <h2>Learning is a beginning. You deserve support, too.</h2>
+                <p>
+                    If your feelings are difficult to manage or are
+                    affecting everyday life, consider speaking with
+                    a qualified mental health professional.
+                </p>
+            </div>
+            <a href="emergency.html" class="support-button">
+                Find support <span aria-hidden="true">→</span>
+            </a>
+        </section>
+
     </main>
 
-    <footer>
-        <p>Ashraya &mdash; Mindfulness and Mental Wellbeing | Need immediate support? Call Tele-MANAS at <strong>14416</strong></p>
+    <footer class="site-footer">
+        <a href="dashboard.html" class="footer-brand">Ashraya.</a>
+        <p>A space to pause, understand and grow.</p>
+        <p class="footer-help">
+            Need someone to talk to?
+            <a href="tel:14416">Tele-MANAS: 14416</a>
+            <span aria-hidden="true">·</span>
+            <a href="tel:112">Emergency: 112</a>
+        </p>
+        <small>Take care of yourself, one day at a time.</small>
     </footer>
 
+</div>
 </body>
 </html>

@@ -1,89 +1,242 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f1e8">
+    <meta name="description" content="Ashraya is a welcoming space to explore mental wellbeing, emotional wellness, journaling and recovery.">
     <title>Ashraya | Your Wellbeing Matters</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
+<div class="app-container">
 
-    <!-- Top Navigation Bar -->
-    <nav class="navbar">
-        <a href="dashboard.html" class="logo">Ashraya</a>
-        <ul class="nav-links">
-            <li><a href="awareness.html">Mental Health Awareness</a></li>
-            <li><a href="wellness.html">Emotional Wellness</a></li>
-            <li><a href="journal.html">Wellbeing Journal</a></li>
-            <li><a href="recovery.html">Addiction Recovery</a></li>
-            <li><a href="emergency.html" class="nav-emergency">Help &amp; Emergency</a></li>
-            <li><a href="emergency.html#raya" class="nav-raya">Raya.AI</a></li>
-        </ul>
-    </nav>
+    <!-- Header -->
+    <header class="top-header-row">
+<div class="brand-group">
+    <a href="dashboard.html" class="logo" aria-label="Ashraya home">
+        Ashraya<span class="logo-dot">.</span>
+    </a>
 
-    <!-- Main Content -->
-    <main class="container">
-        
-        <!-- Welcome Hero Section -->
-        <section class="hero-card">
-            <span class="hero-badge">Breathe. Heal. Begin Again.</span>
-            <h1>Your Wellbeing Matters</h1>
-            <p class="hero-subtitle">A safe space to understand yourself, find balance, and grow at your own pace.</p>
-            <p class="hero-description">
-                Life can sometimes feel overwhelming, but you don't have to figure everything out at once. 
-                Explore mental health resources, practice calming activities, track your moods, and express 
-                your thoughts through journaling. Take small steps toward understanding your emotions and 
-                building healthier habits—one day at a time.
-            </p>
-            <p class="hero-quote">Your journey matters. Every small step counts.</p>
-            <a href="#explore" class="btn-primary">Start your journey today</a>
+    <button type="button" class="theme-toggle" id="themeToggle"
+        aria-label="Switch to dark theme" title="Switch to dark theme">
+
+        <svg class="sun-icon" viewBox="0 0 24 24" width="21" height="21"
+            fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2 M12 20v2 M2 12h2 M20 12h2"></path>
+            <path d="m4.93 4.93 1.42 1.42 M17.65 17.65l1.42 1.42"></path>
+            <path d="m6.35 17.65-1.42 1.42 M19.07 4.93l-1.42 1.42"></path>
+        </svg>
+
+        <svg class="moon-icon" viewBox="0 0 24 24" width="21" height="21"
+            fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" hidden>
+            <path d="M20.9 13A9 9 0 0 1 11 3.1
+                9 9 0 1 0 20.9 13Z"></path>
+        </svg>
+    </button>
+</div>
+
+        <nav class="top-actions" aria-label="Main navigation">
+            <a href="dashboard.html" class="pill-link active" aria-current="page">Home</a>
+            <a href="awareness.html" class="pill-link">Awareness</a>
+            <a href="wellness.html" class="pill-link">Wellness</a>
+            <a href="journal.html" class="pill-link">Journal</a>
+            <a href="recovery.html" class="pill-link">Recovery</a>
+            <a href="emergency.html" class="pill-link pill-emergency">Get help</a>
+            <a href="emergency.html#raya" class="pill-link pill-raya">Raya</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!-- Hero -->
+        <section class="organic-hero">
+            <div class="hero-content">
+                <span class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    A little space for yourself
+                </span>
+
+                <h1>
+                    Your wellbeing<br>
+                    matters. <em>Always.</em>
+                </h1>
+
+                <p class="hero-subtitle">
+                    A gentle place to understand yourself, find balance,
+                    and grow at your own pace.
+                </p>
+
+                <p class="hero-description">
+                    Some days feel lighter than others. Wherever you are
+                    today, you don't have to figure everything out at once.
+                    Explore helpful resources, care for your emotions,
+                    and take one small step towards yourself.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#explore" class="btn-primary">
+                        Explore your space <span aria-hidden="true">→</span>
+                    </a>
+                    <a href="awareness.html" class="text-link">
+                        Get to know mental health
+                    </a>
+                </div>
+
+                <p class="hero-note">
+                    "Your journey matters. Every small step counts."
+                </p>
+            </div>
+
+            <!-- Decorative botanical illustration -->
+            <div class="hero-art" role="img"
+                 aria-label="An abstract illustration of a peaceful sunrise, hills and growing leaves">
+                <div class="sun"></div>
+                <div class="hill hill-back"></div>
+                <div class="hill hill-middle"></div>
+                <div class="hill hill-front"></div>
+
+                <div class="hero-plant plant-one">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="hero-plant plant-two">
+                    <span></span><span></span><span></span>
+                </div>
+
+                <span class="art-caption">Take a breath. Begin again.</span>
+            </div>
         </section>
 
-        <!-- Explore Modules Grid -->
-        <section id="explore">
-            <h2 class="section-heading">Explore Your Safe Space</h2>
+        <!-- Welcome note -->
+        <section class="welcome-note">
+            <div class="welcome-mark" aria-hidden="true">✳</div>
+            <div>
+                <span class="section-kicker">A reminder for today</span>
+                <h2>You don't need to have it all figured out.</h2>
+                <p>
+                    Taking care of yourself can begin with something small:
+                    learning, resting, writing, or reaching out.
+                </p>
+            </div>
+        </section>
+
+        <!-- Explore -->
+        <section class="explore-section" id="explore">
+            <div class="section-intro">
+                <div>
+                    <span class="section-kicker">Find what you need</span>
+                    <h2>Explore your safe space<span>.</span></h2>
+                </div>
+                <p>
+                    Different paths, one purpose: helping you care for
+                    your mind and yourself.
+                </p>
+            </div>
+
             <div class="cards-grid">
-                
-                <a href="awareness.html" class="feature-card">
-                    <div>
-                        <h3>Mental Health Awareness</h3>
-                        <p>The first step of everything in your life begins with you. Read guides and explore self-help activities.</p>
+
+                <a href="awareness.html" class="feature-card awareness-card">
+                    <div class="card-topline">
+                        <span class="card-number">01 / LEARN</span>
+                        <span class="card-symbol" aria-hidden="true">✳</span>
                     </div>
-                    <span class="card-link">Explore Awareness &rarr;</span>
+                    <h3>Mental health<br>awareness</h3>
+                    <p>
+                        Understand your thoughts, explore mental health
+                        topics and help make conversations easier.
+                    </p>
+                    <span class="card-link">
+                        Explore awareness <span aria-hidden="true">↗</span>
+                    </span>
                 </a>
 
-                <a href="wellness.html" class="feature-card">
-                    <div>
-                        <h3>Emotional Wellness</h3>
-                        <p>You are more than the hardest chapter of your life. Track your mood, breathe, and manage stress.</p>
+                <a href="wellness.html" class="feature-card wellness-card">
+                    <div class="card-topline">
+                        <span class="card-number">02 / PAUSE</span>
+                        <span class="card-symbol" aria-hidden="true">❋</span>
                     </div>
-                    <span class="card-link">Open Wellness Tools &rarr;</span>
+                    <h3>Emotional<br>wellness</h3>
+                    <p>
+                        Check in with your feelings, try calming exercises
+                        and discover everyday coping tools.
+                    </p>
+                    <span class="card-link">
+                        Find your balance <span aria-hidden="true">↗</span>
+                    </span>
                 </a>
 
-                <a href="journal.html" class="feature-card">
-                    <div>
-                        <h3>Wellbeing Journal</h3>
-                        <p>Some chapters take longer to write. Record what you felt today and reflect on your past thoughts.</p>
+                <a href="journal.html" class="feature-card journal-card">
+                    <div class="card-topline">
+                        <span class="card-number">03 / REFLECT</span>
+                        <span class="card-symbol" aria-hidden="true">✎</span>
                     </div>
-                    <span class="card-link">Start Writing &rarr;</span>
+                    <h3>Your wellbeing<br>journal</h3>
+                    <p>
+                        Put your thoughts into words. Make room for
+                        reflection without worrying about perfection.
+                    </p>
+                    <span class="card-link">
+                        Start writing <span aria-hidden="true">↗</span>
+                    </span>
                 </a>
 
-                <a href="recovery.html" class="feature-card">
-                    <div>
-                        <h3>Addiction Recovery</h3>
-                        <p>You can take your time becoming okay. Follow recovery tasks, build streaks, and earn rewards.</p>
+                <a href="recovery.html" class="feature-card recovery-card">
+                    <div class="card-topline">
+                        <span class="card-number">04 / GROW</span>
+                        <span class="card-symbol" aria-hidden="true">❧</span>
                     </div>
-                    <span class="card-link">View Recovery Path &rarr;</span>
+                    <h3>Addiction<br>recovery</h3>
+                    <p>
+                        Explore supportive recovery resources and
+                        recognise progress at your own pace.
+                    </p>
+                    <span class="card-link">
+                        Explore recovery <span aria-hidden="true">↗</span>
+                    </span>
                 </a>
 
             </div>
         </section>
 
+        <!-- Support -->
+        <section class="support-section">
+            <div class="support-copy">
+                <span class="section-kicker">You don't have to do it alone</span>
+                <h2>Sometimes, reaching out is the bravest step.</h2>
+                <p>
+                    If things feel difficult, support is available.
+                    Speaking to someone can be a good place to begin.
+                </p>
+            </div>
+
+            <div class="support-action">
+                <a href="emergency.html" class="support-button">
+                    Find support <span aria-hidden="true">→</span>
+                </a>
+                <span>For immediate emergency assistance, call 112.</span>
+            </div>
+        </section>
+
     </main>
 
-    <footer>
-        <p>Ashraya &mdash; Mindfulness and Mental Wellbeing | Need immediate support? Call Tele-MANAS at <strong>14416</strong> or Emergency at <strong>112</strong></p>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <a href="dashboard.html" class="footer-brand">Ashraya.</a>
+        <p>A space to pause, understand and grow.</p>
+        <p class="footer-help">
+            Need someone to talk to?
+            <a href="tel:14416">Tele-MANAS: 14416</a>
+            <span aria-hidden="true">·</span>
+            <a href="tel:112">Emergency: 112</a>
+        </p>
+        <small>Take care of yourself, one day at a time.</small>
     </footer>
 
+</div>
+<script src="assets/js/theme.js"></script>
 </body>
 </html>
